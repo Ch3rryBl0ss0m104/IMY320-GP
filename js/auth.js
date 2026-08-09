@@ -1,3 +1,9 @@
+/*
+Janke Rall u24571238
+Livia Webber u24607852
+Joanna Reardon u24597652
+*/
+
 document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.auth-tab');
     const panels = document.querySelectorAll('.auth-panel');

@@ -419,7 +419,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     .hero .wrap { grid-template-columns: 1fr; }
     .grid-3 { grid-template-columns: 1fr; }
     .site-family { grid-template-columns: repeat(2, 1fr); }
-    .forge-visual { max-width: 280px; }
+    .starbud-visual { max-width: 280px; }
 }
 
 /* Auth page */

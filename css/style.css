@@ -1,2 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
 @import url('https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css')
+
+:root {
+  /* Color - candy/playground palette */
+  --bg: #FAF7FF;
+  --bg-raised: #FFFFFF;
+  --bg-raised-2: #F3EEFF;
+  --line: #E7DFFB;
+
+  --pink: #FF8FB1;
+  --pink-deep: #FF6B9B;
+  --blue: #6EC6FF;
+  --blue-deep: #3FA9F5;
+  --yellow: #FFD166;
+  --yellow-deep: #FFB627;
+  --mint: #7EE8B8;
+  --mint-deep: #4FD69C;
+  --purple: #8C6FE6;
+  --purple-deep: #7452D9;
+
+  /* Semantic aliases */
+  --ember: var(--pink-deep);
+  --ember-dim: var(--purple);
+  --spark: var(--yellow);
+  --success: var(--mint-deep);
+  --danger: #FF6B6B;
+
+  --text: #4A3B5C;
+  --text-muted: #8A7BA0;
+  --text-faint: #B6ABCB;
+
+  /* Type */
+  --font-display: 'Fredoka', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+  --font-mono: 'Nunito', sans-serif;
+
+  /* Layout */
+  --radius: 18px;
+  --radius-sm: 12px;
+  --max-w: 1180px;
+}

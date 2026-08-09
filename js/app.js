@@ -45,3 +45,20 @@ function showToast(message, type = 'default') {
   }, 3200);
 }
 
+function reflectSessionInNav() {
+  const session = starbudGetSession();
+  const slot = document.querySelector('[data-nav-auth-slot]');
+  if (!slot) return;
+  if (session) {
+    slot.innerHTML = `
+      <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-muted);margin-right:0.5rem;">
+        Hi, ${session.name.split(' ')[0]}
+      </span>
+      <button class="btn btn-ghost" id="starbud-logout-btn">Sign out</button>
+    `;
+    const btn = document.getElementById('starbud-logout-btn');
+    if (btn) btn.addEventListener('click', starbudLogout);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', reflectSessionInNav);

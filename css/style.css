@@ -101,6 +101,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* Nav */
+
 .site-nav {
   position: sticky;
   top: 0;
@@ -109,12 +110,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   backdrop-filter: blur(8px);
   border-bottom: 3px solid var(--line);
 }
+
 .site-nav .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 76px;
 }
+
 .brand {
   display: flex;
   align-items: center;
@@ -124,10 +127,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-size: 1.35rem;
   color: var(--purple-deep);
 }
+
 .brand-mark {
   width: 36px; height: 36px;
   display: block;
 }
+
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -136,8 +141,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-size: 0.98rem;
   font-weight: 700;
 }
+
 .nav-links a { color: var(--text-muted); }
+
 .nav-links a:hover, .nav-links a.active { color: var(--pink-deep); }
+
 .nav-cta {
   display: flex;
   gap: 0.75rem;
@@ -145,6 +153,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* Buttons (sticker style) */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -160,18 +169,67 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   box-shadow: 0 4px 0 rgba(0,0,0,0.08);
 }
+
 .btn:hover { transform: translateY(-2px); }
+
 .btn:active { transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+
 .btn-primary {
   background: var(--pink-deep);
   color: #fff;
 }
+
 .btn-primary:hover { background: var(--purple-deep); }
+
 .btn-ghost {
   background: #fff;
   border-color: var(--line);
   color: var(--purple-deep);
 }
+
 .btn-ghost:hover { border-color: var(--pink-deep); color: var(--pink-deep); }
+
 .btn-block { width: 100%; }
 
+/* Footer */
+.site-footer {
+  border-top: 3px solid var(--line);
+  padding: 3rem 0 2rem;
+  margin-top: 5rem;
+  background: var(--bg-raised-2);
+}
+.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-cols {
+  display: flex;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+}
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--purple);
+  margin-bottom: 0.9rem;
+}
+.footer-col ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-col li { margin-bottom: 0.5rem; }
+
+.footer-col a { color: var(--text-muted); font-size: 0.92rem; font-weight: 700; }
+
+.footer-note {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  margin-top: 2.5rem;
+  border-top: 2px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+.footer-note a { color: var(--text-faint); text-decoration: underline; }

@@ -184,7 +184,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     color: #fff;
 }
 
-.btn-primary:hover { background: var(--purple-deep); }
+.btn-primary:hover { 
+    background: var(--purple-deep); 
+    color: #fff;
+}
 
 .btn-ghost {
     background: #fff;

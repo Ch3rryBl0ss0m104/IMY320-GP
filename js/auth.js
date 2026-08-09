@@ -64,3 +64,37 @@ document.addEventListener('DOMContentLoaded', () => {
         if (err) { err.classList.remove('show'); }
     }
     function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    // Login
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email');
+        const password = document.getElementById('login-password');
+        [email, password].forEach(clearError);
+        let ok = true;
+
+        if (!isValidEmail(email.value)) { setError(email, 'Enter a valid email address.'); ok = false; }
+        if (password.value.length < 1) { setError(password, 'Enter your password.'); ok = false; }
+        if (!ok) return;
+
+        const users = starbudGetUsers();
+        const user = users.find(u => u.email.toLowerCase() === email.value.toLowerCase());
+
+        if (!user || user.password !== password.value) {
+            setError(password, 'Incorrect email or password.');
+            showToast('Login failed — check your details and try again.', 'error');
+            return;
+        }
+
+        const btn = loginForm.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Signing in…';
+        setTimeout(() => {
+            starbudSetSession(user);
+            showToast(`Welcome back, ${user.name.split(' ')[0]}.`, 'success');
+            setTimeout(() => window.location.href = 'index.html', 700);
+        }, 600);
+        });
+    }

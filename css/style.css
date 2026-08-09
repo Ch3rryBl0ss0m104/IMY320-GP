@@ -143,3 +143,35 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   gap: 0.75rem;
   align-items: center;
 }
+
+/* Buttons (sticker style) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.08);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+.btn-primary {
+  background: var(--pink-deep);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--purple-deep); }
+.btn-ghost {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--purple-deep);
+}
+.btn-ghost:hover { border-color: var(--pink-deep); color: var(--pink-deep); }
+.btn-block { width: 100%; }
+

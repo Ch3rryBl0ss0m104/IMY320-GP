@@ -1,3 +1,10 @@
+/*
+Janke Rall u24571238
+Livia Webber u24607852
+Joanna Reardon u24597652
+*/
+
+
 const STARBUD_DB_KEY = 'starbud_users_v1';
 const STARBUD_SESSION_KEY = 'starbud_session_v1';
 

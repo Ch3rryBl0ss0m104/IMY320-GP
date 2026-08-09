@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
-@import url('https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css')
 
 :root {
     /* Color - candy/playground palette */
@@ -420,6 +419,55 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     .grid-3 { grid-template-columns: 1fr; }
     .site-family { grid-template-columns: repeat(2, 1fr); }
     .starbud-visual { max-width: 280px; }
+}
+
+/* Hero visual — the big friendly star badge */
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.starbud-visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 380px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.starbud-visual::before, .starbud-visual::after {
+    content: '';
+    position: absolute;
+    inset: 4%;
+    border: 3px dashed var(--line);
+    border-radius: 50%;
+    animation: spin 50s linear infinite;
+}
+
+.starbud-visual::after {
+    inset: 20%;
+    animation-duration: 38s;
+    animation-direction: reverse;
+    border-color: #F0D9FF;
+}
+
+.starbud-core {
+    position: relative;
+    z-index: 2;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #FFE1EC, var(--pink) 60%, var(--pink-deep) 100%);
+    box-shadow: 0 10px 30px rgba(255, 107, 155, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bob 3.5s ease-in-out infinite;
 }
 
 /* Auth page */

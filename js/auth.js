@@ -52,3 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
         label.textContent = val.length ? lvl.text : 'Use 8+ characters with a number and symbol';
         });
     }
+
+        function setError(input, msg) {
+        input.classList.add('invalid');
+        const err = input.closest('.field').querySelector('.field-error');
+        if (err) { err.textContent = msg; err.classList.add('show'); }
+    }
+    function clearError(input) {
+        input.classList.remove('invalid');
+        const err = input.closest('.field').querySelector('.field-error');
+        if (err) { err.classList.remove('show'); }
+    }
+    function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }

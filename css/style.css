@@ -60,3 +60,86 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 0.5em 0;
+  letter-spacing: 0;
+  color: var(--purple-deep);
+}
+
+p { margin: 0 0 1em 0; color: var(--text-muted); }
+
+a { color: var(--pink-deep); text-decoration: none; }
+
+a:hover { color: var(--purple-deep); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pink-deep);
+}
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--blue-deep);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* Nav */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 247, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 3px solid var(--line);
+}
+.site-nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--purple-deep);
+}
+.brand-mark {
+  width: 36px; height: 36px;
+  display: block;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0; padding: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+.nav-links a { color: var(--text-muted); }
+.nav-links a:hover, .nav-links a.active { color: var(--pink-deep); }
+.nav-cta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}

@@ -98,3 +98,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 600);
         });
     }
+
+    //Register
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('reg-name');
+        const email = document.getElementById('reg-email');
+        const password = document.getElementById('reg-password');
+        const confirm = document.getElementById('reg-confirm');
+        const terms = document.getElementById('reg-terms');
+        [name, email, password, confirm].forEach(clearError);
+        let ok = true;
+
+        if (name.value.trim().length < 2) { setError(name, 'Enter your full name.'); ok = false; }
+        if (!isValidEmail(email.value)) { setError(email, 'Enter a valid email address.'); ok = false; }
+        if (password.value.length < 8) { setError(password, 'Use at least 8 characters.'); ok = false; }
+        if (confirm.value !== password.value) { setError(confirm, 'Passwords don\u2019t match.'); ok = false; }
+        if (terms && !terms.checked) { showToast('Please accept the terms to continue.', 'error'); ok = false; }
+        if (!ok) return;
+
+        const users = starbudGetUsers();
+        if (users.some(u => u.email.toLowerCase() === email.value.toLowerCase())) {
+            setError(email, 'An account with this email already exists.');
+            return;
+        }
+
+        const btn = registerForm.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Creating account…';
+        setTimeout(() => {
+            const newUser = { name: name.value.trim(), email: email.value.trim(), password: password.value };
+            users.push(newUser);
+            starbudSaveUsers(users);
+            starbudSetSession(newUser);
+            showToast('Account created across the StarBud network.', 'success');
+            setTimeout(() => window.location.href = 'index.html', 700);
+        }, 700);
+        });
+    }
+
+    // Mock social buttons
+    document.querySelectorAll('.btn-social').forEach(btn => {
+        btn.addEventListener('click', () => {
+        showToast(`${btn.dataset.provider} sign-in isn\u2019t wired up in this prototype.`);
+        });
+    });
+});

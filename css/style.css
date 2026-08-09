@@ -107,6 +107,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     * { animation: none !important; transition: none !important; }
 }
 
+.core {
+    scale: 4;
+    color: var(--purple);
+}
+
 /* Nav */
 
 .site-nav {

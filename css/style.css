@@ -40,3 +40,7 @@
   --radius-sm: 12px;
   --max-w: 1180px;
 }
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }

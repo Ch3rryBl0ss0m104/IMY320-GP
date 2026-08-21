@@ -48,6 +48,12 @@ Joanna Reardon u24597652
 
 html { scroll-behavior: smooth; }
 
+svg {
+    fill: var(--pink);
+    stroke: var(--purple);
+    color: var(--purple);
+}
+
 body {
     margin: 0;
     background: var(--bg);
@@ -884,6 +890,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .select-input:focus {
     border-color: var(--purple-deep);
     background: #fff;
+}
+
+.select-input > option{
+    background: #E8D7FF;
 }
 
 .course-list-container {

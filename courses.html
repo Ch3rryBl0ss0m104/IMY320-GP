@@ -6,7 +6,12 @@
     <title>Courses | StarBud</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
+
+<script src="js/coursesData.js"></script>
+<script src="js/courses.js"></script>
+
 <body>
     
     <nav class="site-nav">
@@ -47,13 +52,22 @@
 
                     <div class="select-wrapper">
                         <select id="courseSort" class="select-input">
-                            <option value="all">All Clubs & Subjects</option>
-                            <option value="code">Coding Courses</option>
-                            <option value="art">Art & Design Courses</option>
-                            <option value="music">Music & Rhythm Courses</option>
-                            <option value="math">Maths & Logic Courses</option>
-                            <option value="name-asc">Name (A - Z)</option>
-                            <option value="name-desc">Name (Z - A)</option>
+                            <option value="all">All Courses</option>
+    
+                            <!-- Category Filters -->
+                            <option value="code">Coding</option>
+                            <option value="art">Art & Design</option>
+                            <option value="music">Music</option>
+                            <option value="math">Maths & Logic</option>
+
+                            <!-- Difficulty Filters -->
+                            <option value="Beginner">Beginner Level</option>
+                            <option value="Intermediate">Intermediate Level</option>
+                            <option value="Advanced">Advanced Level</option>
+
+                            <!-- Sorting Filters -->
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
                         </select>
                     </div>
                 </div>

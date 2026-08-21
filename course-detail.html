@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details | StarBud</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="wrap">
+            <a href="index.html" class="brand">
+                <i class="fi fi-rr-star"></i>
+                StarBud
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html" class="active">Courses</a></li>
+                <li><a href="index.html#family">More Clubs</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="nav-cta" data-nav-auth-slot>
+                <a href="login.html" class="btn btn-ghost">Login</a>
+                <a href="login.html?view=register" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section">
+        <div class="wrap">
+            <div class="detail-top-nav">
+                <a href="courses.html" class="detail-back-link">
+                    <i class="fi fi-rr-arrow-left"></i> Back to Courses
+                </a>
+                <span class="eyebrow" id="detailCategory">Course Overview</span>
+            </div>
+
+            <div class="detail-grid">
+                <div id="detailVisualSide" class="detail-visual-side">
+                    <div class="detail-large-icon">
+                        <i id="detailIcon" class="fi"></i>
+                    </div>
+                </div>
+
+                <div class="detail-info-side">
+                    <h1 id="detailTitle">Loading Course...</h1>
+                    <p class="about-lead" id="detailDescription"></p>
+                    
+                    <div class="detail-meta-pills">
+                        <div class="detail-pill"><i class="fi fi-rr-time-fast"></i> <span id="detailDuration">-</span></div>
+                        <div class="detail-pill"><i class="fi fi-rr-document"></i> <span id="detailLessons">-</span></div>
+                        <div class="detail-pill"><i class="fi fi-rr-stats"></i> Beginner Friendly</div>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" style="margin-top: 1rem;">Start Learning Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <div>
+                <a href="index.html" class="brand" style="margin-bottom:1rem;">
+                    <i class="fi fi-rr-star"></i>
+                    StarBud
+                </a>
+                <p style="max-width:32ch; font-size:0.88rem;">One account. Every club. Built with <i class="fi fi-rc-heart"></i> by the University of Pretoria IMY 320 team.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/courseDetail.js"></script>
+</body>
+</html>

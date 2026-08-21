@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses | StarBud</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+</head>
+<body>
+    
+    <nav class="site-nav">
+        <div class="wrap">
+            <a href="index.html" class="brand">
+                <i class="fi fi-rr-star"></i>
+                StarBud
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html" class="active">Courses</a></li>
+                <li><a href="index.html#family">More Clubs</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="nav-cta" data-nav-auth-slot>
+                <a href="login.html" class="btn btn-ghost">Login</a>
+                <a href="login.html?view=register" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="about-hero">
+        <div class="wrap">
+            <span class="eyebrow">Explore & Learn</span>
+            <h1>Course Catalogue</h1>
+            <p class="about-lead">Browse our full list of kid-friendly, hands-on learning courses.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="wrap">
+                <div class="catalogue-controls">
+                    <div class="search-input-wrapper">
+                        <i class="fi fi-rr-search search-icon"></i>
+                        <input type="text" id="courseSearch" class="search-input" placeholder="Search by title, subject, or keyword...">
+                    </div>
+
+                    <div class="select-wrapper">
+                        <select id="courseSort" class="select-input">
+                            <option value="all">All Clubs & Subjects</option>
+                            <option value="code">Coding Courses</option>
+                            <option value="art">Art & Design Courses</option>
+                            <option value="music">Music & Rhythm Courses</option>
+                            <option value="math">Maths & Logic Courses</option>
+                            <option value="name-asc">Name (A - Z)</option>
+                            <option value="name-desc">Name (Z - A)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="courseList" class="course-list-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <div>
+                <a href="index.html" class="brand" style="margin-bottom:1rem;">
+                    <i class="fi fi-rr-star"></i>
+                    StarBud
+                </a>
+                <p style="max-width:32ch; font-size:0.88rem;">One account. Every club. Built with <i class="fi fi-rc-heart"></i> by the University of Pretoria IMY 320 team.</p>
+            </div>
+            <div class="footer-cols">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="index.html#family">More Clubs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="login.html?view=register">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="wrap footer-note">
+            Built with vanilla HTML/CSS/JS as a course prototype for IMY 320. Fonts: Fredoka, Nunito via Google Fonts. Icons are self-contained inline SVG. No third-party UI frameworks used.
+        </div>
+    </footer>
+
+    <script src="js/courses.js"></script>
+</body>
+</html>

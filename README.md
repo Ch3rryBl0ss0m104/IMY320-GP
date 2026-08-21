@@ -1,14 +1,25 @@
+<div align="center">
+
 # ✦ StarBud — Fun Clubs for Curious Kids
 > **IMY 320: Multimedia Trends** | Group Project Prototype (2026)  
 > *University of Pretoria*
+
+### UX Principles & Submissions
 
 ![Jakob's Law](https://img.shields.io/badge/Design%20A-Jakob's%20Law-7452D9?style=for-the-badge)
 ![Fitts's Law](https://img.shields.io/badge/Design%20B-Fitts's%20Law-FF6B9B?style=for-the-badge)
 ![Peak-End Rule](https://img.shields.io/badge/Design%20C-Peak--End%20Rule-FFB627?style=for-the-badge)
 ![UEQ Evaluation](https://img.shields.io/badge/Design%20D-UEQ%20Evaluation-4FD69C?style=for-the-badge)
-![Vanilla Stack](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JS-3FA9F5?style=for-the-badge)
+
+### Tech Stack
+
+![HTML5](https://img.shields.io/badge/HTML5-FF6B9B?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-3FA9F5?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-FFB627?style=for-the-badge&logo=javascript&logoColor=323232)
 
 ---
+
+</div>
 
 ### Overview
 

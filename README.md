@@ -1,10 +1,14 @@
 <div align="center">
+
 # ✦ StarBud — Fun Clubs for Curious Kids
+
 </div>
+
 > **IMY 320: Multimedia Trends** | Group Project Prototype (2026)  
 > *University of Pretoria*
 
 <div align="center">
+
 ### UX Principles & Submissions
 
 ![Jakob's Law](https://img.shields.io/badge/Design%20A-Jakob's%20Law-7452D9?style=for-the-badge)

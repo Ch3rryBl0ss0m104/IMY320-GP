@@ -1,12 +1,28 @@
-# StarBud — Fun Clubs for Curious Kids
+# ✦ StarBud — Fun Clubs for Curious Kids
 > **IMY 320: Multimedia Trends** | Group Project Prototype (2026)  
 > *University of Pretoria*
+
+![Jakob's Law](https://img.shields.io/badge/Design%20A-Jakob's%20Law-7452D9?style=for-the-badge)
+![Fitts's Law](https://img.shields.io/badge/Design%20B-Fitts's%20Law-FF6B9B?style=for-the-badge)
+![Peak-End Rule](https://img.shields.io/badge/Design%20C-Peak--End%20Rule-FFB627?style=for-the-badge)
+![UEQ Evaluation](https://img.shields.io/badge/Design%20D-UEQ%20Evaluation-4FD69C?style=for-the-badge)
+![Vanilla Stack](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JS-3FA9F5?style=for-the-badge)
 
 ---
 
 ### Overview
 
 StarBud is a unified learning shell designed for young learners. It brings together distinct activity clubs—Code Club, Art Studio, Music Room, and Number Lab—under a single, user-friendly account system. The platform emphasizes accessible, low-friction UX patterns built explicitly for children and their parents.
+
+---
+
+### Team Members
+
+| 🎯 | 💻 | 🎨 |
+| :---: | :---: | :---: |
+| **Joanna Reardon** | **Janke Rall** | **Livia Webber** |
+| `u24597652` | `u24571238` | `u24607852` |
+| Product & UX Research | Frontend Engineering | Visual & UI Design |
 
 ---
 
@@ -27,16 +43,8 @@ StarBud is a unified learning shell designed for young learners. It brings toget
 The project adheres to a playful, sticker-inspired UI design system styled in pure CSS without external frameworks:
 
 * **Primary Palette:** Candy Pink (`#FF6B9B`), Sky Blue (`#3FA9F5`), Playroom Purple (`#7452D9`), Spark Yellow (`#FFB627`), and Mint Green (`#4FD69C`).
-* **Typography:** `Fredoka` (Headings) and `Nunito` (Body Text).
+* **Typography:** `Fredoka` (Display Headings) and `Nunito` (Body Text).
 * **UI Patterns:** Pill buttons with subtle bottom shadows, rounded borders, soft gradients, and inline Flaticon iconography.
-
----
-
-### Development Team
-
-* **Joanna Reardon** (`u24597652`) — Product & UX Research
-* **Janke Rall** (`u24571238`) — Frontend Engineering
-* **Livia Webber** (`u24607852`) — Visual & UI Design
 
 ---
 

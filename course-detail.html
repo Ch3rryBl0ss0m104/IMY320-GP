@@ -1,3 +1,9 @@
+<!--
+Janke Rall u24571238
+Livia Webber u24607852
+Joanna Reardon u24597652
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +16,6 @@
 </head>
 
 <script src="js/coursesData.js"></script>
-<script src="js/courseDetail.js"></script>
 
 <body>
     <nav class="site-nav">
@@ -58,11 +63,16 @@
                         <div class="detail-pill"><i class="fi fi-rr-stats"></i> <span id="detailDifficulty">-</span></div>
                     </div>
 
-                    <button class="btn btn-primary btn-block" style="margin-top: 1rem;">Start Learning Now</button>
+                    <button id="startBtn" class="btn btn-primary btn-block" style="margin-top: 1rem;">Start Learning Now</button>
                 </div>
             </div>
         </div>
     </main>
+
+    <div id="starbudToast" class="toast">
+        <i class="fi fi-rr-sparkles" style="color: var(--yellow-deep); margin-right: 0.5rem;"></i>
+        <span>Yay, you have started your learning journey!</span>
+    </div>
 
     <footer class="site-footer">
         <div class="wrap">
@@ -73,9 +83,36 @@
                 </a>
                 <p style="max-width:32ch; font-size:0.88rem;">One account. Every club. Built with <i class="fi fi-rc-heart"></i> by the University of Pretoria IMY 320 team.</p>
             </div>
+            <div class="footer-cols">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="index.html#family">More Clubs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="login.html?view=register">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="wrap footer-note">
+            Built with vanilla HTML/CSS/JS as a course prototype for IMY 320. No third-party UI frameworks used. Fonts: Fredoka, Nunito via Google Fonts. Icons: Flaticon. Libraries: canvas-confetti.
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="js/courseDetail.js"></script>
 </body>
 </html>

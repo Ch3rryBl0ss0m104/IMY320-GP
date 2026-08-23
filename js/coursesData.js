@@ -5,7 +5,6 @@ Joanna Reardon u24597652
 */
 
 const coursesData = [
-    // --- MIXED INITIAL HIGHLIGHTS ---
     {
         id: "code-101",
         title: "Scratch & Coding Fundamentals",
@@ -59,7 +58,6 @@ const coursesData = [
         lessons: 8
     },
 
-    // --- INTERMEDIATE MIX ---
     {
         id: "code-201",
         title: "Web Development Starter",
@@ -113,7 +111,6 @@ const coursesData = [
         lessons: 10
     },
 
-    // --- ADVANCED MIX ---
     {
         id: "code-301",
         title: "Game Design & Physics Logic",
@@ -167,7 +164,6 @@ const coursesData = [
         lessons: 12
     },
 
-    // --- EXTRA EXPLORATION ---
     {
         id: "code-102",
         title: "Python for Young Creators",

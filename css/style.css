@@ -1615,3 +1615,201 @@ a.family-card:hover,
         transform: none !important;
     }
 }
+
+/* ==========================================================================
+   TASK 5: Interaction Consistency Utilities & Global Standardizations
+   ========================================================================== */
+
+/* 1. Global Focus States */
+:focus-visible {
+    outline: 3px solid var(--purple-deep);
+    outline-offset: 2px;
+}
+
+/* 2. Unified Form Input Focus */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--pink-deep) !important;
+    box-shadow: 0 0 0 4px rgba(255, 107, 155, 0.15) !important;
+}
+
+/* 3. Button Baseline Standardization */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    border-radius: var(--radius);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Add to your timeline section in style.css */
+.timeline {
+    border-left: 4px dashed #ff9f43; /* Playful dashed orange line */
+    margin-left: 20px;
+    padding-left: 40px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    transition: transform 0.2s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(10px); /* Slight nudge right on hover */
+}
+
+/* Creates the star nodes on the line */
+.timeline-item::before {
+    content: '★'; 
+    position: absolute;
+    left: -58px; /* Pulls the star over the dashed line */
+    top: 0;
+    background: #fff;
+    color: #ff9f43;
+    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 0 0 6px #fff; /* Cuts out the dashed line behind it */
+}
+
+.timeline-year {
+    display: inline-block;
+    background: #ff9f43;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Upgrade your value-card styles */
+/* --- Value Cards: Non-clickable, decorative style --- */
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.value-card {
+    position: relative;
+    padding: 2rem 2rem 2rem 2.25rem;
+    border: 3px solid var(--line);
+    border-radius: var(--radius);
+    background: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Clips the decorative accent bar */
+    cursor: default; /* Reinforces non-interactivity */
+}
+
+/* Colored accent indicator on the left side of each card */
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    border-radius: 6px 0 0 6px;
+}
+
+/* Individual accent colors matching the StarBud palette */
+.value-card:nth-child(1)::before { background: var(--pink-deep); }
+.value-card:nth-child(2)::before { background: var(--blue-deep); }
+.value-card:nth-child(3)::before { background: var(--yellow-deep); }
+.value-card:nth-child(4)::before { background: var(--mint-deep); }
+
+/* Playful badge number with subtle float animation */
+.value-card .num {
+    font-family: var(--font-display);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    width: 36px; 
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    flex-shrink: 0;
+    animation: gentleFloat 4s ease-in-out infinite alternate;
+}
+
+/* Unique badge background colors for each number */
+.value-card:nth-child(1) .num { background: var(--pink-deep); }
+.value-card:nth-child(2) .num { background: var(--blue-deep); animation-delay: 0.5s; }
+.value-card:nth-child(3) .num { background: var(--yellow-deep); animation-delay: 1s; }
+.value-card:nth-child(4) .num { background: var(--mint-deep); animation-delay: 1.5s; }
+
+.value-card h3 { 
+    margin: 0.8rem 0 0.4rem; 
+    font-size: 1.15rem; 
+    color: var(--purple-deep);
+}
+
+.value-card p { 
+    font-size: 0.94rem; 
+    margin-bottom: 0; 
+    color: var(--text-muted);
+}
+
+/* Non-interactive floating animation for number badges */
+@keyframes gentleFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px); }
+}
+
+/* Upgrade your team-avatar styles */
+.team-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    /* This creates the organic blob shape */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    transition: border-radius 0.4s ease, transform 0.4s ease;
+}
+
+.team-card:hover .team-avatar {
+    /* Snaps to a perfect circle and scales up slightly on hover */
+    border-radius: 50%; 
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* Give each team member a unique brand color */
+.team-card:nth-child(1) .team-avatar { background: #ff9f43; } /* Jo */
+.team-card:nth-child(2) .team-avatar { background: #ee5253; } /* Janke */
+.team-card:nth-child(3) .team-avatar { background: #0abde3; } /* Livia */

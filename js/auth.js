@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     activate(params.get('view') === 'register' ? 'register' : 'login');
 
-    // Password visibility toggles
     document.querySelectorAll('.field-pw-toggle').forEach(btn => {
         btn.addEventListener('click', () => {
         const input = document.getElementById(btn.dataset.target);
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Password strength meter (register)
     const regPassword = document.getElementById('reg-password');
     if (regPassword) {
         const fill = document.querySelector('.strength-fill');
@@ -71,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
-    // Login
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
@@ -105,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    //Register
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', (e) => {
@@ -145,10 +141,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mock social buttons
     document.querySelectorAll('.btn-social').forEach(btn => {
         btn.addEventListener('click', () => {
         showToast(`${btn.dataset.provider} sign-in isn\u2019t wired up in this prototype.`);
         });
     });
 });
+
+function starbudLogout() {
+    const session = starbudGetSession();
+    const state = typeof getState === 'function' ? getState() : { xp: 0 };
+    const firstName = session ? session.name.split(' ')[0] : 'StarBud';
+
+    if (typeof showToast === 'function') {
+        showToast(`Great learning session, ${firstName}! Total XP: ${state.xp} ✨ See you soon!`, 'success');
+    }
+
+    setTimeout(() => {
+        localStorage.removeItem('starbud_session');
+        window.location.href = 'index.html';
+    }, 1200);
+}

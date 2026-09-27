@@ -1,6 +1,5 @@
 <div align="center">
 
-# ✦ StarBud — Fun Clubs for Curious Kids
 
 </div>
 
@@ -9,30 +8,26 @@
 
 <div align="center">
 
-### UX Principles & Submissions
 
 ![Jakob's Law](https://img.shields.io/badge/Design%20A-Jakob's%20Law-7452D9?style=for-the-badge)
 ![Fitts's Law](https://img.shields.io/badge/Design%20B-Fitts's%20Law-FF6B9B?style=for-the-badge)
-![Peak-End Rule](https://img.shields.io/badge/Design%20C-Peak--End%20Rule-FFB627?style=for-the-badge)
-![UEQ Evaluation](https://img.shields.io/badge/Design%20D-UEQ%20Evaluation-4FD69C?style=for-the-badge)
+![Peak-End Rule](https:
+![UEQ Evaluation](https:
 
-### Tech Stack
 
-![HTML5](https://img.shields.io/badge/HTML5-FF6B9B?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-3FA9F5?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-FFB627?style=for-the-badge&logo=javascript&logoColor=323232)
+![HTML5](https:
+![CSS3](https:
+![JavaScript](https:
 
 ---
 
 </div>
 
-### Overview
 
 StarBud is a unified learning shell designed for young learners. It brings together distinct activity clubs - Code Club, Art Studio, Music Room, and Number Lab - under a single, user-friendly account system. The platform emphasizes accessible, low-friction UX patterns built explicitly for children and their parents.
 
 ---
 
-### Team Members
 
 | 🎯 | 💻 | 🎨 |
 | :---: | :---: | :---: |
@@ -42,7 +37,6 @@ StarBud is a unified learning shell designed for young learners. It brings toget
 
 ---
 
-### Project Submissions & UX Principles
 
 | Submission | Topic / UX Principle | Core Implementation |
 | :--- | :--- | :--- |
@@ -54,20 +48,15 @@ StarBud is a unified learning shell designed for young learners. It brings toget
 
 ---
 
-### Design System & Visual Identity
 
 The project adheres to a playful, sticker-inspired UI design system styled in pure CSS without external frameworks:
 
 ---
 
-### Repository Setup
 
 ```bash
-# Clone the repository
-git clone [https://github.com/Ch3rryBl0ss0m104/IMY320-GP.git](https://github.com/Ch3rryBl0ss0m104/IMY320-GP.git)
+git clone [https:
 
-# Navigate into the project folder
 cd IMY320-GP
 
-# Open in VS Code
 code .

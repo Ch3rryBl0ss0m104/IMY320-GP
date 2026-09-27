@@ -120,13 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const orbitDesc = document.getElementById('orbitDesc');
     const orbitalCore = document.getElementById('orbitalCore');
 
-    // 1. Single spin animation trigger on scroll into view
     if (orbitalAssembly) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     orbitalAssembly.classList.add('spin-in');
-                    observer.unobserve(entry.target); // Guarantees it only spins once
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.3 });
@@ -134,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(orbitalAssembly);
     }
 
-    // 2. Hover interactions
     if (orbitNodes.length && orbitTitle && orbitDesc && orbitalCore) {
         const defaultTitle = "StarBud Hub";
         const defaultDesc = "Hover over any club to explore";
@@ -168,4 +166,30 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+});
+
+// Function to update certificate dynamic details
+function renderCertificate(courseTitle = "Web Development Fundamentals") {
+    const session = typeof starbudGetSession === 'function' ? starbudGetSession() : null;
+    const userName = session && session.name ? session.name : "StarBud Learner";
+
+    // Dynamic element updates
+    const nameEl = document.getElementById("cert-user-name");
+    const courseEl = document.getElementById("cert-course-title");
+    const dateEl = document.getElementById("cert-issue-date");
+
+    if (nameEl) nameEl.textContent = userName;
+    if (courseEl) courseEl.textContent = courseTitle;
+    if (dateEl) {
+        const today = new Date();
+        dateEl.textContent = today.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderCertificate();
 });

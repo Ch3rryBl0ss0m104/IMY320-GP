@@ -37,7 +37,7 @@ Joanna Reardon u24597652
         </div>
     </nav>
 
-    <main class="section">
+    <main class="course-detail-page">
         <div class="wrap">
             <div class="detail-top-nav">
                 <a href="courses.html" class="detail-back-link">
@@ -46,25 +46,116 @@ Joanna Reardon u24597652
                 <span class="eyebrow" id="detailCategory">Course Overview</span>
             </div>
 
-            <div class="detail-grid">
-                <div id="detailVisualSide" class="detail-visual-side">
-                    <div class="detail-large-icon">
-                        <i id="detailIcon" class="fi"></i>
-                    </div>
-                </div>
-
-                <div class="detail-info-side">
-                    <h1 id="detailTitle">Loading Course...</h1>
-                    <p class="about-lead" id="detailDescription"></p>
+            <div class="course-detail-layout">
+                
+                <!-- LEFT COLUMN: Overview & Detailed Modules -->
+                <div class="course-main-content">
                     
-                    <div class="detail-meta-pills">
-                        <div class="detail-pill"><i class="fi fi-rr-time-fast"></i> <span id="detailDuration">-</span></div>
-                        <div class="detail-pill"><i class="fi fi-rr-document"></i> <span id="detailLessons">-</span></div>
-                        <div class="detail-pill"><i class="fi fi-rr-stats"></i> <span id="detailDifficulty">-</span></div>
+                    <div class="course-header-block">
+                        <div class="badge-row">
+                            <span class="badge badge-purple"><i class="fi fi-rr-clock"></i> <span id="detailDuration">-</span></span>
+                            <span class="badge badge-blue"><i class="fi fi-rr-book-alt"></i> <span id="detailLessons">-</span></span>
+                            <span class="badge badge-pink"><i class="fi fi-rr-signal"></i> <span id="detailDifficulty">-</span></span>
+                        </div>
+                        <h1 id="detailTitle" class="course-title">Loading Course...</h1>
+                        <p id="detailDescription" class="course-lead"></p>
                     </div>
 
-                    <button id="startBtn" class="btn btn-primary btn-block" style="margin-top: 1rem;">Start Learning Now</button>
+                    <!-- What's Included -->
+                    <div class="detail-card-block">
+                        <h3>What's Included</h3>
+                        <div class="included-grid">
+                            <div class="included-item">
+                                <i class="fi fi-rr-download icon-pink"></i>
+                                <div>
+                                    <strong>Starter Assets & Packs</strong>
+                                    <p>Downloadable code starter files, sound packs, and visual assets.</p>
+                                </div>
+                            </div>
+                            <div class="included-item">
+                                <i class="fi fi-rr-comments icon-purple"></i>
+                                <div>
+                                    <strong>Live Mentor Q&A</strong>
+                                    <p>Interactive help and feedback on projects from course assistants.</p>
+                                </div>
+                            </div>
+                            <div class="included-item">
+                                <i class="fi fi-rr-diploma icon-blue"></i>
+                                <div>
+                                    <strong>Completion Certificate</strong>
+                                    <p>Earn a StarBud verified badge and printable learning certificate.</p>
+                                </div>
+                            </div>
+                            <div class="included-item">
+                                <i class="fi fi-rr-infinity icon-mint"></i>
+                                <div>
+                                    <strong>Lifetime Access</strong>
+                                    <p>Revisit lesson recordings and project challenges anytime.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Syllabus / Module Breakdown -->
+                    <div class="detail-card-block">
+                        <h3>Course Syllabus & Module Breakdown</h3>
+                        <div id="syllabusContainer" class="syllabus-accordion">
+                            <!-- Injected dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Prerequisites & Equipment -->
+                    <div class="detail-card-block">
+                        <h3>Prerequisites & Equipment Needed</h3>
+                        <ul id="prereqContainer" class="prereq-list">
+                            <!-- Injected dynamically via JS -->
+                        </ul>
+                    </div>
+
                 </div>
+
+                <!-- RIGHT COLUMN: Start Button, Visual Header & Instructor Profile Card -->
+                <div class="course-sidebar">
+                    
+                    <!-- Primary CTA Button (Outside and Above Card) -->
+                    <button id="startBtn" class="btn btn-mint btn-full">Start Learning Now</button>
+
+                    <!-- Visual Header Card -->
+                    <div id="detailVisualSide" class="sidebar-visual-card">
+                        <div class="visual-icon-wrap">
+                            <i id="detailIcon" class="fi"></i>
+                        </div>
+                        <span class="visual-tag" id="sidebarCategoryTag">Interactive Learning Track</span>
+                    </div>
+
+                    <!-- Instructor Card -->
+                    <div class="instructor-card">
+                        <div class="instructor-badge">Course Instructor</div>
+                        
+                        <div class="instructor-header">
+                            <img id="instructorAvatar" src="" alt="Instructor Avatar" class="instructor-avatar" />
+                            <div>
+                                <h4 id="instructorName">-</h4>
+                                <p id="instructorTitle" class="instructor-title">-</p>
+                            </div>
+                        </div>
+
+                        <p id="instructorBio" class="instructor-bio">-</p>
+
+                        <div class="instructor-stats">
+                            <div class="stat-item">
+                                <span id="instructorRating" class="stat-value">4.9 ★</span>
+                                <span class="stat-label">Student Rating</span>
+                            </div>
+                            <div class="stat-item">
+                                <span id="instructorCourses" class="stat-value">10</span>
+                                <span class="stat-label">Courses Taught</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </main>
@@ -113,6 +204,10 @@ Joanna Reardon u24597652
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/coursesData.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/nav.js"></script>
     <script src="js/courseDetail.js"></script>
 </body>
 </html>

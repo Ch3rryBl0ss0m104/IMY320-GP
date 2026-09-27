@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
         const filterVal = sortSelect ? sortSelect.value : "all";
 
-        // 1. Text Search Filter
         if (query) {
             filtered = filtered.filter(c => 
                 c.title.toLowerCase().includes(query) || 
@@ -26,26 +25,21 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         }
 
-        // 2. Dropdown Filter / Sorting Logic
         if (filterVal === "name-asc") {
             filtered.sort((a, b) => a.title.localeCompare(b.title));
         } else if (filterVal === "name-desc") {
             filtered.sort((a, b) => b.title.localeCompare(a.title));
         } else if (["code", "art", "music", "math"].includes(filterVal)) {
-            // Filter by Category
             filtered = filtered.filter(c => c.category === filterVal);
         } else if (["Beginner", "Intermediate", "Advanced"].includes(filterVal)) {
-            // Filter by Difficulty Level
             filtered = filtered.filter(c => c.difficulty === filterVal);
         }
 
-        // Empty state handling
         if (filtered.length === 0) {
             courseList.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 2rem;">No courses found matching your criteria.</p>`;
             return;
         }
 
-        // Render Cards
         courseList.innerHTML = filtered.map(course => `
             <a href="course-detail.html?id=${course.id}" class="course-list-item" style="border-left: 6px solid ${course.color}; --course-color: ${course.color};">
                 <div class="course-info">

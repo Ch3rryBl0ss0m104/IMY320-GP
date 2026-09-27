@@ -69,3 +69,103 @@ function reflectSessionInNav() {
 }
 
 document.addEventListener('DOMContentLoaded', reflectSessionInNav);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const pathFill = document.getElementById('roadmapPathFill');
+    const steps = document.querySelectorAll('.zigzag-step');
+    const container = document.querySelector('.roadmap-zigzag-container');
+
+    if (!pathFill || !container || !steps.length) return;
+
+    
+    const pathLength = pathFill.getTotalLength();
+    pathFill.style.strokeDasharray = pathLength;
+    pathFill.style.strokeDashoffset = pathLength;
+
+    function updateZigzagRoadmap() {
+        const rect = container.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        
+        const start = windowHeight * 0.75;
+        const totalHeight = rect.height;
+        const currentProgress = start - rect.top;
+
+        let progressRatio = currentProgress / totalHeight;
+        progressRatio = Math.min(Math.max(progressRatio, 0), 1);
+
+        
+        const drawLength = pathLength * progressRatio;
+        pathFill.style.strokeDashoffset = pathLength - drawLength;
+
+        
+        steps.forEach((step) => {
+            const stepRect = step.getBoundingClientRect();
+            if (stepRect.top < windowHeight * 0.75) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateZigzagRoadmap);
+    updateZigzagRoadmap(); 
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const orbitalAssembly = document.getElementById('orbitalAssembly');
+    const orbitNodes = document.querySelectorAll('.orbit-node');
+    const orbitTitle = document.getElementById('orbitTitle');
+    const orbitDesc = document.getElementById('orbitDesc');
+    const orbitalCore = document.getElementById('orbitalCore');
+
+    // 1. Single spin animation trigger on scroll into view
+    if (orbitalAssembly) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    orbitalAssembly.classList.add('spin-in');
+                    observer.unobserve(entry.target); // Guarantees it only spins once
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(orbitalAssembly);
+    }
+
+    // 2. Hover interactions
+    if (orbitNodes.length && orbitTitle && orbitDesc && orbitalCore) {
+        const defaultTitle = "StarBud Hub";
+        const defaultDesc = "Hover over any club to explore";
+
+        orbitNodes.forEach((node) => {
+            node.addEventListener('mouseenter', () => {
+                const title = node.getAttribute('data-title');
+                const desc = node.getAttribute('data-desc');
+                const nodeColor = node.style.getPropertyValue('--node-bg') || 'var(--purple-deep)';
+
+                orbitTitle.textContent = title;
+                orbitDesc.textContent = desc;
+
+                orbitalCore.style.backgroundColor = nodeColor;
+                orbitalCore.style.borderColor = nodeColor;
+                orbitalCore.classList.add('active-hover');
+
+                orbitNodes.forEach(n => n.classList.remove('active'));
+                node.classList.add('active');
+            });
+
+            node.addEventListener('mouseleave', () => {
+                orbitTitle.textContent = defaultTitle;
+                orbitDesc.textContent = defaultDesc;
+
+                orbitalCore.style.backgroundColor = '#ffffff';
+                orbitalCore.style.borderColor = 'var(--purple-deep)';
+                orbitalCore.classList.remove('active-hover');
+
+                node.classList.remove('active');
+            });
+        });
+    }
+});

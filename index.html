@@ -69,28 +69,44 @@ Joanna Reardon u24597652
     </div>
 </header>
 
-<section class="section" id="courses">
+<section class="section roadmap-section" id="courses">
     <div class="wrap">
-        <div class="section-head">
-        <span class="eyebrow">Why kids love StarBud</span>
-        <h2>Learn by making, not just watching.</h2>
+        <div class="section-head text-center">
+            <span class="eyebrow">Why kids love StarBud</span>
+            <h2>Learn by making, not just watching.</h2>
         </div>
-        <div class="grid-3">
-        <div class="card">
-            <span class="num">1</span>
-            <h3>Make something fun</h3>
-            <p>Every lesson ends with something you made. A mini-game, a drawing, a song, not just a quiz to click through.</p>
-        </div>
-        <div class="card">
-            <span class="num">2</span>
-            <h3>Watch yourself grow</h3>
-            <p>Your badges and progress follow you to every StarBud club, so trying a new one never means starting over.</p>
-        </div>
-        <div class="card">
-            <span class="num">3</span>
-            <h3>Friendly helpers</h3>
-            <p>Our teachers explain things step by step, in plain, simple language, no confusing jargon, ever.</p>
-        </div>
+
+        <div class="roadmap-zigzag-container">
+            <svg class="roadmap-svg" viewBox="0 0 800 500" preserveAspectRatio="none">
+                <path class="roadmap-path-bg" d="M 223,120 C 543,60 511,211 478,236 C 445,310 82,337 231,420" />
+                <path class="roadmap-path-fill" id="roadmapPathFill" d="M 223,120 C 543,60 511,211 478,236 C 445,310 82,337 231,420" />
+            </svg>
+
+            <div class="roadmap-zigzag-steps">
+                <div class="zigzag-step step-left" data-step="1">
+                    <div class="roadmap-node">1</div>
+                    <div class="roadmap-card">
+                        <h3>Make something fun</h3>
+                        <p>Every lesson ends with something you made. A mini-game, a drawing, a song, not just a quiz to click through.</p>
+                    </div>
+                </div>
+
+                <div class="zigzag-step step-right" data-step="2">
+                    <div class="roadmap-node">2</div>
+                    <div class="roadmap-card">
+                        <h3>Watch yourself grow</h3>
+                        <p>Your badges and progress follow you to every StarBud club, so trying a new one never means starting over.</p>
+                    </div>
+                </div>
+
+                <div class="zigzag-step step-left" data-step="3">
+                    <div class="roadmap-node">3</div>
+                    <div class="roadmap-card">
+                        <h3>Friendly helpers</h3>
+                        <p>Our teachers explain things step by step, in plain, simple language, no confusing jargon, ever.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -98,37 +114,46 @@ Joanna Reardon u24597652
 <section class="section" id="family">
     <div class="wrap">
         <div class="section-head">
-        <span class="eyebrow">One login, four clubs</span>
-        <h2>The StarBud family of clubs.</h2>
-        <p>Your StarBud account works in every club below, the same friendly login and profile, everywhere you go.</p>
+            <span class="eyebrow">One login, four clubs</span>
+            <h2>The StarBud family of clubs.</h2>
+            <p>Your StarBud account works in every club below, the same friendly login and profile, everywhere you go.</p>
         </div>
-        <div class="site-family">
-        <div class="family-card">
-            <div class="family-icon" style="background:var(--blue-deep);"><i class="fi fi-rr-browser"></i></div>
-            <h4>StarBud Code Club</h4>
-            <p>Build games & websites</p>
-        </div>
-        <div class="family-card">
-            <div class="family-icon" style="background:var(--pink-deep);">
-                <i class="fi fi-rr-palette"></i>
+
+        <div class="orbital-container">
+            <!-- Outer Ring & Nodes spin together ONCE when scrolled into view -->
+            <div class="orbital-assembly" id="orbitalAssembly">
+                <svg class="orbital-ring-svg" viewBox="0 0 500 500">
+                    <circle cx="250" cy="250" r="180" class="orbit-path" />
+                </svg>
+
+                <div class="orbital-nodes">
+                    <div class="orbit-node node-code" data-title="StarBud Code Club" data-desc="Build games & websites with easy drag-and-drop code blocks." style="--node-bg: var(--blue-deep);">
+                        <div class="node-icon"><i class="fi fi-rr-browser"></i></div>
+                        <span class="node-label">Code Club</span>
+                    </div>
+                    <div class="orbit-node node-art" data-title="StarBud Art Studio" data-desc="Explore digital drawing, animation, and graphic design." style="--node-bg: var(--pink-deep);">
+                        <div class="node-icon"><i class="fi fi-rr-palette"></i></div>
+                        <span class="node-label">Art Studio</span>
+                    </div>
+                    <div class="orbit-node node-music" data-title="StarBud Music Room" data-desc="Create beats, synthesize sounds, and compose your own songs." style="--node-bg: var(--purple-deep);">
+                        <div class="node-icon"><i class="fi fi-rr-microphone"></i></div>
+                        <span class="node-label">Music Room</span>
+                    </div>
+                    <div class="orbit-node node-number" data-title="StarBud Number Lab" data-desc="Master math puzzles, logic games, and fun problem solving." style="--node-bg: var(--mint-deep);">
+                        <div class="node-icon"><i class="fi fi-rr-calculator"></i></div>
+                        <span class="node-label">Number Lab</span>
+                    </div>
+                </div>
             </div>
-            <h4>StarBud Art Studio</h4>
-            <p>Drawing & digital design</p>
-        </div>
-        <div class="family-card">
-            <div class="family-icon" style="background:var(--purple-deep);">
-                <i class="fi fi-rr-microphone"></i>
+
+            <!-- Core stays stationary -->
+            <div class="orbital-core" id="orbitalCore">
+                <div class="core-star"><i class="fi fi-rr-star"></i></div>
+                <div class="core-info">
+                    <h3 id="orbitTitle">StarBud Hub</h3>
+                    <p id="orbitDesc">Hover over any club to explore</p>
+                </div>
             </div>
-            <h4>StarBud Music Room</h4>
-            <p>Make beats & songs</p>
-        </div>
-        <div class="family-card">
-            <div class="family-icon" style="background:var(--mint-deep);">
-                <i class="fi fi-rr-calculator"></i>
-            </div>
-            <h4>StarBud Number Lab</h4>
-            <p>Puzzles & problem solving</p>
-        </div>
         </div>
     </div>
 </section>

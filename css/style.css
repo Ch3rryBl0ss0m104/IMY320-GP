@@ -10,31 +10,31 @@ Joanna Reardon u24597652
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
 :root {
-    --bg:
-    --bg-raised:
-    --bg-raised-2:
-    --line:
+    --bg: #faf7ff;
+    --bg-raised: #ffffff;
+    --bg-raised-2: #f2eefb;
+    --line: #e2d9f3;
 
-    --pink:
-    --pink-deep:
-    --blue:
-    --blue-deep:
-    --yellow:
-    --yellow-deep:
-    --mint:
-    --mint-deep:
-    --purple:
-    --purple-deep:
+    --pink: #ff8fb1;
+    --pink-deep: #ff6b9b;
+    --blue: #6ec6ff;
+    --blue-deep: #3fa9f5;
+    --yellow: #ffd166;
+    --yellow-deep: #f5a623;
+    --mint: #86efac;
+    --mint-deep: #10b981;
+    --purple: #8c6fe6;
+    --purple-deep: #7452d9;
 
     --ember: var(--pink-deep);
     --ember-dim: var(--purple);
     --spark: var(--yellow);
     --success: var(--mint-deep);
-    --danger:
+    --danger: #ff4757;
 
-    --text:
-    --text-muted:
-    --text-faint:
+    --text: #1a102f;
+    --text-muted: #5e527a;
+    --text-faint: #988cb0;
 
     --font-display: 'Fredoka', sans-serif;
     --font-body: 'Nunito', sans-serif;
@@ -215,12 +215,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .btn-primary {
     background: var(--pink-deep);
-    color:
+    color: #ffffff;
 }
 
 .btn-primary:hover { 
     background: var(--purple-deep); 
-    color:
+    color: #ffffff;
 }
 
 .btn-ghost {
@@ -508,7 +508,7 @@ a.family-card:hover,
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 1.2rem;
-    color:
+    color: #ffffff;
     flex-shrink: 0;
 }
 
@@ -676,7 +676,7 @@ a.family-card:hover,
     font-family: var(--font-display);
 }
 
-.auth-tab.active { background: var(--pink-deep); color:
+.auth-tab.active { background: var(--pink-deep); color: #ffffff; }
 
 .field { margin-bottom: 1.25rem; }
 
@@ -856,7 +856,7 @@ a.family-card:hover,
 
 .value-card .num {
     font-family: var(--font-display);
-    color:
+    color: #ffffff;
     background: var(--pink-deep);
     font-size: 0.8rem;
     width: 30px; 
@@ -1110,7 +1110,7 @@ a.family-card:hover,
     display: flex;
     align-items: center;
     justify-content: center;
-    color:
+    color: #ffffff;
     font-size: 1.4rem;
     flex-shrink: 0;
     line-height: 0;
@@ -1160,7 +1160,7 @@ a.family-card:hover,
     padding: 0.6rem 1.2rem;
     border-radius: 999px;
     background: var(--course-color);
-    color:
+    color: #ffffff;
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.88rem;
@@ -1219,7 +1219,7 @@ a.family-card:hover,
     align-items: center;
     justify-content: center;
     font-size: 5rem;
-    color:
+    color: #ffffff;
     line-height: 1;
 }
 
@@ -1383,7 +1383,7 @@ a.family-card:hover,
 .zigzag-step.active .roadmap-node {
     border-color: var(--pink-deep);
     background: var(--pink-deep);
-    color:
+    color: #ffffff;
     transform: scale(1.15);
     box-shadow: 0 0 20px rgba(255, 107, 155, 0.4);
 }
@@ -1512,12 +1512,12 @@ a.family-card:hover,
 }
 
 .orbital-core.active-hover .core-star {
-    color:
+    color: #ffffff;
 }
 
 .orbital-core.active-hover .core-info h3,
 .orbital-core.active-hover .core-info p {
-    color:
+    color: #ffffff;
 }
 
 .orbital-nodes {
@@ -1550,7 +1550,7 @@ a.family-card:hover,
     display: flex;
     align-items: center;
     justify-content: center;
-    color:
+    color: #ffffff;
     font-size: 1.5rem;
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
@@ -1661,7 +1661,7 @@ textarea:focus {
     left: -58px;
     top: 0;
     background: var(--pink-deep);
-    color:
+    color: #ffffff;
     font-size: 1.2rem;
     width: 32px;
     height: 32px;
@@ -1720,7 +1720,7 @@ textarea:focus {
 
 .value-card .num {
     font-family: var(--font-display);
-    color:
+    color: #ffffff;
     font-size: 0.9rem;
     font-weight: 700;
     width: 36px; 
@@ -1900,7 +1900,7 @@ textarea:focus {
     font-weight: 700;
     font-size: 0.8rem;
     background: var(--purple-deep);
-    color:
+    color: #ffffff;
     padding: 0.2rem 0.6rem;
     border-radius: 6px;
 }
@@ -1997,7 +1997,7 @@ textarea:focus {
     top: -12px;
     left: 1.5rem;
     background: var(--pink-deep);
-    color:
+    color: #ffffff;
     font-size: 0.75rem;
     font-family: var(--font-display);
     font-weight: 700;
@@ -2073,8 +2073,8 @@ textarea:focus {
 
 
 .btn-mint {
-    background: var(--mint-deep,
-    color:
+    background: var(--mint-deep, #10b981);
+    color: #ffffff;
     font-size: 1.05rem;
     padding: 0.9rem 1.5rem;
     box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
@@ -2090,7 +2090,7 @@ textarea:focus {
     border-radius: var(--radius);
     padding: 2rem 1.5rem;
     text-align: center;
-    color:
+    color: #ffffff;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
@@ -2120,7 +2120,7 @@ textarea:focus {
 
 .xp-pill {
     background: var(--bg-raised);
-    color: var(--yellow-deep,
+    color: var(--yellow-deep, #f5a623);
     border: 2px solid var(--line);
     font-weight: 800;
     padding: 0.35rem 0.85rem;
@@ -2260,7 +2260,7 @@ textarea:focus {
 
 .progress-bar-fill {
     height: 100%;
-    background: var(--mint-deep,
+    background: var(--mint-deep, #10b981);
     width: 0%;
     transition: width 0.4s ease;
 }
@@ -2300,8 +2300,8 @@ textarea:focus {
 }
 
 .nav-link.active-highlight {
-    background: var(--purple-deep,
-    color:
+    background: var(--purple-deep, #7452d9);
+    color: #ffffff;
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
     font-weight: 700;
@@ -2324,8 +2324,8 @@ textarea:focus {
 }
 
 .nav-classroom-pill {
-    background: var(--purple-deep,
-    color:
+    background: var(--purple-deep, #7452d9);
+    color: #ffffff;
     padding: 0.35rem 0.85rem !important;
     border-radius: 999px;
     font-weight: 700 !important;
@@ -2342,8 +2342,8 @@ textarea:focus {
 
 .cart-trigger-btn {
     position: relative;
-    background: var(--bg-raised-2,
-    border: 2px solid var(--line,
+    background: var(--bg-raised-2, #f2eefb);
+    border: 2px solid var(--line, #e2d9f3);
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -2352,7 +2352,7 @@ textarea:focus {
     justify-content: center;
     cursor: pointer;
     font-size: 1.1rem;
-    color: var(--text,
+    color: var(--text, #1a102f);
     transition: all 0.2s ease;
 }
 
@@ -2373,8 +2373,8 @@ textarea:focus {
     position: relative;
     width: 100%;
     max-width: 860px;
-    background:
-    background-image: radial-gradient(
+    background: #ffffff;
+    background-image: radial-gradient(#f1f5f9 1px, transparent 1px);
     background-size: 24px 24px;
     border-radius: 12px;
     padding: 4rem 3.5rem 3rem;
@@ -2388,7 +2388,7 @@ textarea:focus {
 .cert-border-outer {
     position: absolute;
     inset: 16px;
-    border: 3px solid
+    border: 3px solid #6c5ce7;
     border-radius: 6px;
     pointer-events: none;
 }
@@ -2396,7 +2396,7 @@ textarea:focus {
 .cert-border-inner {
     position: absolute;
     inset: 22px;
-    border: 1px dashed
+    border: 1px dashed #f1c40f;
     border-radius: 4px;
     pointer-events: none;
 }
@@ -2406,7 +2406,7 @@ textarea:focus {
     position: absolute;
     width: 20px;
     height: 20px;
-    border-color:
+    border-color: #6c5ce7;
     border-style: solid;
     pointer-events: none;
 }
@@ -2420,13 +2420,13 @@ textarea:focus {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    color:
+    color: #6c5ce7;
     margin-bottom: 0.75rem;
 }
 
 .cert-badge-icon {
     font-size: 1.6rem;
-    color:
+    color: #f1c40f;
 }
 
 .cert-brand {
@@ -2434,7 +2434,7 @@ textarea:focus {
     font-weight: 700;
     font-size: 1rem;
     letter-spacing: 3px;
-    color:
+    color: #4b32c3;
 }
 
 /* Main Titles */
@@ -2442,7 +2442,7 @@ textarea:focus {
     font-family: 'Cinzel', serif;
     font-size: 2.4rem;
     font-weight: 800;
-    color:
+    color: #0f172a;
     margin: 0.25rem 0 0.5rem;
     letter-spacing: 1px;
 }
@@ -2451,7 +2451,7 @@ textarea:focus {
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 2.5px;
-    color:
+    color: #94a3b8;
     margin-bottom: 1.25rem;
 }
 
@@ -2465,14 +2465,14 @@ textarea:focus {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 2.6rem;
     font-weight: 800;
-    color:
+    color: #5f27cd;
     margin: 0;
     padding: 0 1.5rem;
 }
 
 .cert-name-underline {
     height: 3px;
-    background: linear-gradient(90deg, transparent,
+    background: linear-gradient(90deg, transparent, #6c5ce7, #f1c40f, #6c5ce7, transparent);
     margin-top: 6px;
     border-radius: 2px;
 }
@@ -2480,7 +2480,7 @@ textarea:focus {
 /* Body Text */
 .cert-body-text {
     font-size: 1.05rem;
-    color:
+    color: #475569;
     max-width: 520px;
     margin: 0 auto 0.75rem;
     line-height: 1.5;
@@ -2489,7 +2489,7 @@ textarea:focus {
 .cert-course-name {
     font-size: 1.5rem;
     font-weight: 800;
-    color:
+    color: #0f172a;
     margin: 0 0 2.5rem;
 }
 
@@ -2516,15 +2516,15 @@ textarea:focus {
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 1.5px;
-    color:
-    border-top: 1.5px solid
+    color: #94a3b8;
+    border-top: 1.5px solid #cbd5e1;
     padding-top: 6px;
     margin-top: 4px;
 }
 
 .cert-val {
     font-weight: 700;
-    color:
+    color: #1e293b;
     font-size: 0.95rem;
     min-height: 32px;
     display: flex;
@@ -2538,7 +2538,7 @@ textarea:focus {
 .cert-signature-font {
     font-family: 'Caveat', cursive;
     font-size: 2rem;
-    color:
+    color: #341f97;
     font-weight: 600;
 }
 
@@ -2546,13 +2546,13 @@ textarea:focus {
 .cert-gold-seal {
     width: 68px;
     height: 68px;
-    background: linear-gradient(135deg,
+    background: linear-gradient(135deg, #ffeaa7, #fdcb6e, #e1b12c);
     border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color:
+    color: #5c3d00;
     box-shadow: 0 8px 16px rgba(225, 177, 44, 0.35), inset 0 0 0 3px rgba(255, 255, 255, 0.6);
 }
 

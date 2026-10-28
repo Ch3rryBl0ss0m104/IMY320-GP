@@ -34,25 +34,93 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function removeCourse(courseId, courseTitle) {
-    const firstConfirm = confirm(`Are you sure you want to remove "${courseTitle}" from your courses?`);
-    if (!firstConfirm) return;
+let pendingRemoveCourseId = null;
+let pendingRemoveCourseTitle = "";
 
-    const secondConfirm = confirm(`Double check: Really remove "${courseTitle}"? Your progress will remain saved.`);
-    if (!secondConfirm) return;
+function openRemoveModal(event, courseId, courseTitle) {
+    if (event) {
+        event.stopPropagation();
+    }
+
+    pendingRemoveCourseId = courseId;
+    pendingRemoveCourseTitle = courseTitle;
+
+    let modalOverlay = document.getElementById("removeCourseModalOverlay");
+    if (!modalOverlay) {
+        modalOverlay = document.createElement("div");
+        modalOverlay.id = "removeCourseModalOverlay";
+        modalOverlay.style.cssText = `
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: fadeIn 0.2s ease-out;
+        `;
+        document.body.appendChild(modalOverlay);
+    }
+
+    modalOverlay.innerHTML = `
+        <div style="background: #ffffff; border: 4px solid var(--purple-deep, #7c3aed); border-radius: 24px; padding: 2rem; max-width: 440px; width: 100%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.25); position: relative; animation: slideUp 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+            <div style="width: 64px; height: 64px; background: #fee2e2; color: #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.25rem auto;">
+                <i class="fi fi-rr-trash"></i>
+            </div>
+
+            <h3 style="margin: 0 0 0.5rem 0; font-size: 1.4rem; color: #0f172a;">Remove Course?</h3>
+            <p style="color: #64748b; font-size: 0.92rem; line-height: 1.5; margin: 0 0 1.5rem 0;">
+                Are you sure you want to remove <strong style="color: #0f172a;">"${courseTitle}"</strong> from your enrolled courses? Your progress will remain saved if you re-enroll later.
+            </p>
+
+            <div style="display: flex; gap: 0.75rem; justify-content: center;">
+                <button onclick="closeRemoveModal()" class="btn btn-ghost" style="flex: 1; border: 2px solid #cbd5e1; justify-content: center; font-weight: 700;">
+                    Cancel
+                </button>
+                <button onclick="confirmRemoveCourse()" class="btn" style="flex: 1; background: #ef4444; color: #ffffff; border: 2px solid #b91c1c; justify-content: center; font-weight: 800; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);">
+                    Remove Course
+                </button>
+            </div>
+        </div>
+    `;
+
+    modalOverlay.style.display = "flex";
+}
+
+function closeRemoveModal() {
+    const modalOverlay = document.getElementById("removeCourseModalOverlay");
+    if (modalOverlay) {
+        modalOverlay.style.display = "none";
+    }
+    pendingRemoveCourseId = null;
+    pendingRemoveCourseTitle = "";
+}
+
+function confirmRemoveCourse() {
+    if (!pendingRemoveCourseId) return;
 
     const currentState = typeof getState === 'function' ? getState() : { enrolled: [] };
-    currentState.enrolled = (currentState.enrolled || []).filter(id => id !== courseId);
+    currentState.enrolled = (currentState.enrolled || []).filter(id => id !== pendingRemoveCourseId);
 
     if (typeof saveState === 'function') {
         saveState(currentState);
     }
 
     if (typeof showToast === 'function') {
-        showToast(`Removed "${courseTitle}" from your courses.`, 'info');
+        showToast(`Removed "${pendingRemoveCourseTitle}" from your courses.`, 'info');
     }
 
+    closeRemoveModal();
     window.location.reload();
+}
+
+function scrollToCertificates() {
+    const certSection = document.getElementById("graduationCertificatesSection");
+    if (certSection) {
+        certSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
 function renderCoursesDashboardView(enrolledCourses, state, container) {
@@ -73,11 +141,14 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                 <p style="color: var(--text-muted);">Select a course below to jump into your lesson path.</p>
             </div>
             
-            <div style="background: #fff; border: 2px solid var(--line, #e5e7eb); padding: 0.6rem 1.2rem; border-radius: 12px; display: flex; align-items: center; gap: 0.8rem;">
-                <span style="font-size: 1.3rem; color: #f59e0b;"><i class="fi fi-rr-medal"></i></span>
+            <!-- Clean Certificates Earned Quick-Nav Card -->
+            <div onclick="scrollToCertificates()" style="background: #fff; border: 2px solid var(--line, #e5e7eb); padding: 0.75rem 1.4rem; border-radius: 16px; display: flex; align-items: center; gap: 0.9rem; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.03);" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'" title="Click to view your certificates section below">
+                <span style="font-size: 1.6rem; color: #f59e0b;"><i class="fi fi-rr-medal"></i></span>
                 <div>
-                    <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: var(--text-muted);">Certificates Earned</div>
-                    <div style="font-weight: 800; color: var(--purple-deep); font-size: 1.1rem;">${completedCourses.length} / ${enrolledCourses.length}</div>
+                    <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: var(--text-muted);">
+                        Certificates Earned
+                    </div>
+                    <div style="font-weight: 900; color: var(--purple-deep); font-size: 1.25rem;">${completedCourses.length} / ${enrolledCourses.length}</div>
                 </div>
             </div>
         </div>
@@ -90,7 +161,8 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                 const iconBg = course.bgColor ? course.bgColor : '#f3f4f6';
 
                 return `
-                    <div style="background: #ffffff; border: 3px solid var(--line, #e5e7eb); border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                    <!-- Entire Card Clickable -->
+                    <div onclick="window.location.href='classroom.html?id=${course.id}'" style="background: #ffffff; border: 3px solid var(--line, #e5e7eb); border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.03)';">
                         <div style="height: 6px; background: ${course.color}; position: absolute; top: 0; left: 0; right: 0;"></div>
                         
                         <div>
@@ -100,7 +172,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                                 </div>
                                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                                     <span class="badge badge-purple">${course.categoryName}</span>
-                                    <button onclick="removeCourse('${course.id}', '${course.title.replace(/'/g, "\\'")}')" style="background: transparent; border: none; color: #9ca3af; cursor: pointer; font-size: 0.75rem; padding: 2px 4px; border-radius: 4px; line-height: 1;" title="Remove Course">
+                                    <button onclick="openRemoveModal(event, '${course.id}', '${course.title.replace(/'/g, "\\'")}')" style="background: transparent; border: none; color: #9ca3af; cursor: pointer; font-size: 0.85rem; padding: 4px; border-radius: 4px; line-height: 1; transition: color 0.2s;" onmouseover="this.style.color='#ef4444';" onmouseout="this.style.color='#9ca3af';" title="Remove Course">
                                         <i class="fi fi-rr-cross-small"></i>
                                     </button>
                                 </div>
@@ -121,16 +193,16 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                                 </div>
                             </div>
 
-                            <a href="classroom.html?id=${course.id}" class="btn btn-primary btn-full" style="justify-content: center;">
+                            <span class="btn btn-primary btn-full" style="justify-content: center;">
                                 ${percent === 100 ? 'Review Trail <i class="fi fi-rr-graduation-cap"></i>' : percent > 0 ? 'Continue Trail <i class="fi fi-rr-arrow-right"></i>' : 'Start Trail <i class="fi fi-rr-arrow-right"></i>'}
-                            </a>
+                            </span>
                         </div>
                     </div>
                 `;
             }).join('')}
         </div>
 
-        <div style="background: #fff; border: 3px solid var(--line, #e5e7eb); border-radius: 20px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+        <div id="graduationCertificatesSection" style="background: #fff; border: 3px solid var(--line, #e5e7eb); border-radius: 20px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
             <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
                 <div style="font-size: 1.8rem; color: var(--purple-deep);"><i class="fi fi-rr-graduation-cap"></i></div>
                 <div>
@@ -186,7 +258,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         justify-content: center;
                         align-items: center;
                         min-height: 100vh;
-                        background:
+                        background: #f8fafc;
                         margin: 0;
                         padding: 20px;
                         box-sizing: border-box;
@@ -195,8 +267,8 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                     .cert-card {
                         width: 820px;
                         padding: 45px 40px 35px;
-                        background:
-                        border: 10px solid
+                        background: #ffffff;
+                        border: 10px solid #6c5ce7;
                         border-radius: 16px;
                         text-align: center;
                         box-shadow: 0 20px 40px rgba(0,0,0,0.12);
@@ -209,7 +281,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         left: 12px;
                         right: 12px;
                         bottom: 12px;
-                        border: 2px dashed
+                        border: 2px dashed #f1c40f;
                         border-radius: 8px;
                         pointer-events: none;
                     }
@@ -218,7 +290,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         align-items: center;
                         justify-content: center;
                         gap: 8px;
-                        color:
+                        color: #6c5ce7;
                         font-size: 0.95rem;
                         font-weight: 800;
                         letter-spacing: 2px;
@@ -228,7 +300,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                     .cert-title {
                         font-size: 2.2rem;
                         font-weight: 800;
-                        color:
+                        color: #0f172a;
                         margin: 0.25rem 0;
                     }
                     .cert-sub {
@@ -236,13 +308,13 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         font-weight: 700;
                         letter-spacing: 2px;
                         text-transform: uppercase;
-                        color:
+                        color: #94a3b8;
                         margin-bottom: 1.5rem;
                     }
                     .student-name {
                         font-size: 2.5rem;
                         font-weight: 800;
-                        color:
+                        color: #5f27cd;
                         margin: 0;
                         padding: 0 1rem;
                         display: inline-block;
@@ -250,13 +322,13 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                     .name-underline {
                         height: 3px;
                         width: 100%;
-                        background: linear-gradient(90deg, transparent,
+                        background: linear-gradient(90deg, transparent, #6c5ce7, #f1c40f, #6c5ce7, transparent);
                         margin-top: 6px;
                         border-radius: 2px;
                     }
                     .cert-body {
                         font-size: 1rem;
-                        color:
+                        color: #475569;
                         max-width: 520px;
                         margin: 0.5rem auto 0.25rem;
                         line-height: 1.5;
@@ -264,7 +336,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                     .course-title {
                         font-size: 1.5rem;
                         font-weight: 800;
-                        color:
+                        color: #0f172a;
                         margin: 0 0 2rem;
                     }
                     .footer {
@@ -283,22 +355,22 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         font-size: 0.65rem;
                         font-weight: 800;
                         letter-spacing: 1px;
-                        color:
+                        color: #94a3b8;
                         text-transform: uppercase;
-                        border-top: 1.5px solid
+                        border-top: 1.5px solid #cbd5e1;
                         padding-top: 4px;
                         margin-top: 2px;
                     }
                     .seal-wrap {
                         width: 64px;
                         height: 64px;
-                        background: linear-gradient(135deg,
+                        background: linear-gradient(135deg, #ffeaa7, #fdcb6e, #e1b12c);
                         border-radius: 50%;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        color:
+                        color: #5c3d00;
                         box-shadow: 0 6px 16px rgba(225, 177, 44, 0.4);
                         margin: 0 auto;
                     }
@@ -369,15 +441,15 @@ function renderLessonPlayerView(courseId, enrolledCourses, container) {
     let selectedLessonIdx = initialCompleted.length < allLessons.length ? initialCompleted.length : 0;
 
     container.innerHTML = `
-        <!-- High-Contrast Sticky Pill Button Navigation -->
-        <div style="margin-bottom: 1.5rem;">
-            <a href="classroom.html" class="btn" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #f3e8ff; color: var(--purple-deep); border: 2.5px solid var(--purple-deep); border-radius: 999px; padding: 0.5rem 1.25rem; font-weight: 800; font-size: 0.9rem; text-decoration: none; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);">
-                <i class="fi fi-rr-arrow-left"></i> Back to My Courses
+        <!-- Prominent Pill Button Navigation -->
+        <div style="margin-bottom: 2rem;">
+            <a href="classroom.html" class="btn" style="display: inline-flex; align-items: center; gap: 0.75rem; background: var(--purple-deep, #7c3aed); color: #ffffff; border: 3px solid #5b21b6; border-radius: 999px; padding: 0.85rem 1.8rem; font-weight: 800; font-size: 1.05rem; text-decoration: none; box-shadow: 0 6px 18px rgba(124, 58, 237, 0.28); transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(124, 58, 237, 0.38)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 18px rgba(124, 58, 237, 0.28)';">
+                <i class="fi fi-rr-arrow-left" style="font-size: 1.2rem;"></i> Back to My Courses
             </a>
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem;">
                 <div>
                     <span class="badge badge-purple">${course.categoryName} • ${course.difficulty}</span>
-                    <h1 id="classTitle" style="font-size: 1.8rem; margin: 0.2rem 0 0 0;">${course.title}</h1>
+                    <h1 id="classTitle" style="font-size: 2rem; margin: 0.3rem 0 0 0;">${course.title}</h1>
                 </div>
             </div>
         </div>
@@ -480,6 +552,7 @@ function renderLessonPlayerView(courseId, enrolledCourses, container) {
             xpDisplay.textContent = currentState.xp || 0;
         }
 
+        // Dynamic Certificate Card Updates (Grayed-out when incomplete, active when 100%)
         const certCard = document.getElementById("courseCertificateCard");
         const session = typeof starbudGetSession === 'function' ? starbudGetSession() : null;
         const userName = session && session.name ? session.name : (currentState.userName || "StarBud Scholar");

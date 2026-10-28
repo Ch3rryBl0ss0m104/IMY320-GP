@@ -25,39 +25,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.field-pw-toggle').forEach(btn => {
         btn.addEventListener('click', () => {
-        const input = document.getElementById(btn.dataset.target);
-        const isPw = input.type === 'password';
-        input.type = isPw ? 'text' : 'password';
-        btn.textContent = isPw ? 'Hide' : 'Show';
+            const input = document.getElementById(btn.dataset.target);
+            const isPw = input.type === 'password';
+            input.type = isPw ? 'text' : 'password';
+            btn.textContent = isPw ? 'Hide' : 'Show';
         });
     });
 
     const regPassword = document.getElementById('reg-password');
     if (regPassword) {
         const fill = document.querySelector('.strength-fill');
-        const label = document.querySelector('.strength-label');
+
+        const chkLength = document.getElementById('chkLength');
+        const chkUpper = document.getElementById('chkUpper');
+        const chkNumSym = document.getElementById('chkNumSym');
+
         regPassword.addEventListener('input', () => {
-        const val = regPassword.value;
-        let score = 0;
-        if (val.length >= 8) score++;
-        if (/[A-Z]/.test(val)) score++;
-        if (/[0-9]/.test(val)) score++;
-        if (/[^A-Za-z0-9]/.test(val)) score++;
-        const levels = [
-            { pct: '10%', color: 'var(--danger)', text: 'Very weak' },
-            { pct: '35%', color: 'var(--danger)', text: 'Weak' },
-            { pct: '60%', color: 'var(--spark)', text: 'Okay' },
-            { pct: '85%', color: 'var(--spark)', text: 'Good' },
-            { pct: '100%', color: 'var(--success)', text: 'Strong' },
-        ];
-        const lvl = levels[Math.min(score, 4)];
-        fill.style.width = val.length ? lvl.pct : '0%';
-        fill.style.background = lvl.color;
-        label.textContent = val.length ? lvl.text : 'Use 8+ characters with a number and symbol';
+            const val = regPassword.value;
+
+            const isLen = val.length >= 8;
+            const isUp = /[A-Z]/.test(val);
+            const isNumSym = /[0-9!@#$%^&*(),.?":{}|<>]/.test(val);
+
+            if (chkLength) {
+                chkLength.style.color = isLen ? '#10b981' : '#94a3b8';
+                chkLength.innerHTML = isLen 
+                    ? `<i class="fi fi-rr-check-circle" style="color:#10b981;"></i> At least 8 characters`
+                    : `<i class="fi fi-rr-circle-cross"></i> At least 8 characters`;
+            }
+
+            if (chkUpper) {
+                chkUpper.style.color = isUp ? '#10b981' : '#94a3b8';
+                chkUpper.innerHTML = isUp 
+                    ? `<i class="fi fi-rr-check-circle" style="color:#10b981;"></i> At least 1 uppercase letter (A-Z)`
+                    : `<i class="fi fi-rr-circle-cross"></i> At least 1 uppercase letter (A-Z)`;
+            }
+
+            if (chkNumSym) {
+                chkNumSym.style.color = isNumSym ? '#10b981' : '#94a3b8';
+                chkNumSym.innerHTML = isNumSym 
+                    ? `<i class="fi fi-rr-check-circle" style="color:#10b981;"></i> At least 1 number or special character`
+                    : `<i class="fi fi-rr-circle-cross"></i> At least 1 number or special character`;
+            }
+
+            let score = 0;
+            if (isLen) score++;
+            if (isUp) score++;
+            if (isNumSym) score++;
+
+            const levels = [
+                { pct: '0%', color: 'var(--danger)' },
+                { pct: '33%', color: 'var(--danger)' },
+                { pct: '66%', color: 'var(--spark)' },
+                { pct: '100%', color: 'var(--success)' },
+            ];
+            const lvl = levels[score];
+            if (fill) {
+                fill.style.width = val.length ? lvl.pct : '0%';
+                fill.style.background = lvl.color;
+            }
         });
     }
 
-        function setError(input, msg) {
+    function setError(input, msg) {
         input.classList.add('invalid');
         const err = input.closest('.field').querySelector('.field-error');
         if (err) { err.textContent = msg; err.classList.add('show'); }
@@ -72,93 +102,91 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = document.getElementById('login-email');
-        const password = document.getElementById('login-password');
-        [email, password].forEach(clearError);
-        let ok = true;
+            e.preventDefault();
+            const email = document.getElementById('login-email');
+            const password = document.getElementById('login-password');
+            [email, password].forEach(clearError);
+            let ok = true;
 
-        if (!isValidEmail(email.value)) { setError(email, 'Enter a valid email address.'); ok = false; }
-        if (password.value.length < 1) { setError(password, 'Enter your password.'); ok = false; }
-        if (!ok) return;
+            if (!isValidEmail(email.value)) { setError(email, 'Enter a valid email address.'); ok = false; }
+            if (password.value.length < 1) { setError(password, 'Enter your password.'); ok = false; }
+            if (!ok) return;
 
-        const users = starbudGetUsers();
-        const user = users.find(u => u.email.toLowerCase() === email.value.toLowerCase());
+            const users = starbudGetUsers();
+            const user = users.find(u => u.email.toLowerCase() === email.value.toLowerCase());
 
-        if (!user || user.password !== password.value) {
-            setError(password, 'Incorrect email or password.');
-            showToast('Login failed — check your details and try again.', 'error');
-            return;
-        }
+            if (!user || user.password !== password.value) {
+                setError(password, 'Incorrect email or password.');
+                showToast('Login failed — check your details and try again.', 'error');
+                return;
+            }
 
-        const btn = loginForm.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        btn.textContent = 'Signing in…';
-        setTimeout(() => {
-            starbudSetSession(user);
-            showToast(`Welcome back, ${user.name.split(' ')[0]}.`, 'success');
-            setTimeout(() => window.location.href = 'index.html', 700);
-        }, 600);
+            const btn = loginForm.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.textContent = 'Signing in…';
+            setTimeout(() => {
+                starbudSetSession(user);
+                showToast(`Welcome back, ${user.name.split(' ')[0]}.`, 'success');
+                setTimeout(() => window.location.href = 'index.html', 700);
+            }, 600);
         });
     }
 
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('reg-name');
-        const email = document.getElementById('reg-email');
-        const password = document.getElementById('reg-password');
-        const confirm = document.getElementById('reg-confirm');
-        const terms = document.getElementById('reg-terms');
-        [name, email, password, confirm].forEach(clearError);
-        let ok = true;
+            e.preventDefault();
+            const name = document.getElementById('reg-name');
+            const email = document.getElementById('reg-email');
+            const password = document.getElementById('reg-password');
+            const confirm = document.getElementById('reg-confirm');
+            const terms = document.getElementById('reg-terms');
+            [name, email, password, confirm].forEach(clearError);
+            let ok = true;
 
-        if (name.value.trim().length < 2) { setError(name, 'Enter your full name.'); ok = false; }
-        if (!isValidEmail(email.value)) { setError(email, 'Enter a valid email address.'); ok = false; }
-        if (password.value.length < 8) { setError(password, 'Use at least 8 characters.'); ok = false; }
-        if (confirm.value !== password.value) { setError(confirm, 'Passwords don\u2019t match.'); ok = false; }
-        if (terms && !terms.checked) { showToast('Please accept the terms to continue.', 'error'); ok = false; }
-        if (!ok) return;
+            const val = password.value;
+            const isLen = val.length >= 8;
+            const isUp = /[A-Z]/.test(val);
+            const isNumSym = /[0-9!@#$%^&*(),.?":{}|<>]/.test(val);
 
-        const users = starbudGetUsers();
-        if (users.some(u => u.email.toLowerCase() === email.value.toLowerCase())) {
-            setError(email, 'An account with this email already exists.');
-            return;
-        }
+            if (name.value.trim().length < 2) { setError(name, 'Enter your full name.'); ok = false; }
+            if (!isValidEmail(email.value)) { setError(email, 'Enter a valid email address.'); ok = false; }
+            if (!isLen || !isUp || !isNumSym) { 
+                setError(password, 'Password must be 8+ chars, with 1 uppercase letter and 1 number/symbol.'); 
+                ok = false; 
+            }
+            if (confirm.value !== password.value) { setError(confirm, 'Passwords don\u2019t match.'); ok = false; }
+            if (terms && !terms.checked) { showToast('Please accept the terms to continue.', 'error'); ok = false; }
+            if (!ok) return;
 
-        const btn = registerForm.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        btn.textContent = 'Creating account…';
-        setTimeout(() => {
-            const newUser = { name: name.value.trim(), email: email.value.trim(), password: password.value };
-            users.push(newUser);
-            starbudSaveUsers(users);
-            starbudSetSession(newUser);
-            showToast('Account created across the StarBud network.', 'success');
-            setTimeout(() => window.location.href = 'index.html', 700);
-        }, 700);
+            const users = starbudGetUsers();
+            if (users.some(u => u.email.toLowerCase() === email.value.toLowerCase())) {
+                setError(email, 'An account with this email already exists.');
+                return;
+            }
+
+            const btn = registerForm.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.textContent = 'Creating account…';
+            setTimeout(() => {
+                const newUser = { name: name.value.trim(), email: email.value.trim(), password: password.value };
+                users.push(newUser);
+                starbudSaveUsers(users);
+                starbudSetSession(newUser);
+
+                if (typeof resetSessionState === 'function') {
+                    resetSessionState(newUser);
+                }
+
+                showToast('Account created across the StarBud network.', 'success');
+                setTimeout(() => window.location.href = 'index.html', 700);
+            }, 700);
         });
     }
 
     document.querySelectorAll('.btn-social').forEach(btn => {
         btn.addEventListener('click', () => {
-        showToast(`${btn.dataset.provider} sign-in isn\u2019t wired up in this prototype.`);
+            showToast(`${btn.dataset.provider} sign-in isn\u2019t wired up in this prototype.`);
         });
     });
 });
-
-function starbudLogout() {
-    const session = starbudGetSession();
-    const state = typeof getState === 'function' ? getState() : { xp: 0 };
-    const firstName = session ? session.name.split(' ')[0] : 'StarBud';
-
-    if (typeof showToast === 'function') {
-        showToast(`Great learning session, ${firstName}! Total XP: ${state.xp} ✨ See you soon!`, 'success');
-    }
-
-    setTimeout(() => {
-        localStorage.removeItem('starbud_session');
-        window.location.href = 'index.html';
-    }, 1200);
-}

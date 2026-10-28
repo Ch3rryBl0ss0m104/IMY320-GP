@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    const enrolledCourses = coursesData.filter(c => enrolledIds.includes(c.id));
+    const enrolledCourses = (typeof coursesData !== 'undefined' ? coursesData : []).filter(c => enrolledIds.includes(c.id));
     const params = new URLSearchParams(window.location.search);
     const activeCourseId = params.get("id");
 
@@ -117,7 +117,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                                     <span style="color: var(--purple-deep);">${percent}%</span>
                                 </div>
                                 <div style="width: 100%; height: 10px; background: #e5e7eb; border-radius: 999px; overflow: hidden;">
-                                    <div style="width: ${percent}\%; height: 100\%; background:${course.color}; transition: width 0.3s ease;"></div>
+                                    <div style="width: ${percent}%; height: 100%; background:${course.color}; transition: width 0.3s ease;"></div>
                                 </div>
                             </div>
 
@@ -186,7 +186,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         justify-content: center;
                         align-items: center;
                         min-height: 100vh;
-                        background: #f8fafc;
+                        background:
                         margin: 0;
                         padding: 20px;
                         box-sizing: border-box;
@@ -195,8 +195,8 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                     .cert-card {
                         width: 820px;
                         padding: 45px 40px 35px;
-                        background: #ffffff;
-                        border: 10px solid #6c5ce7;
+                        background:
+                        border: 10px solid
                         border-radius: 16px;
                         text-align: center;
                         box-shadow: 0 20px 40px rgba(0,0,0,0.12);
@@ -209,7 +209,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         left: 12px;
                         right: 12px;
                         bottom: 12px;
-                        border: 2px dashed #f1c40f;
+                        border: 2px dashed
                         border-radius: 8px;
                         pointer-events: none;
                     }
@@ -218,7 +218,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         align-items: center;
                         justify-content: center;
                         gap: 8px;
-                        color: #6c5ce7;
+                        color:
                         font-size: 0.95rem;
                         font-weight: 800;
                         letter-spacing: 2px;
@@ -228,7 +228,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                     .cert-title {
                         font-size: 2.2rem;
                         font-weight: 800;
-                        color: #0f172a;
+                        color:
                         margin: 0.25rem 0;
                     }
                     .cert-sub {
@@ -236,13 +236,13 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         font-weight: 700;
                         letter-spacing: 2px;
                         text-transform: uppercase;
-                        color: #94a3b8;
+                        color:
                         margin-bottom: 1.5rem;
                     }
                     .student-name {
                         font-size: 2.5rem;
                         font-weight: 800;
-                        color: #5f27cd;
+                        color:
                         margin: 0;
                         padding: 0 1rem;
                         display: inline-block;
@@ -250,13 +250,13 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                     .name-underline {
                         height: 3px;
                         width: 100%;
-                        background: linear-gradient(90deg, transparent, #6c5ce7, #f1c40f, #6c5ce7, transparent);
+                        background: linear-gradient(90deg, transparent,
                         margin-top: 6px;
                         border-radius: 2px;
                     }
                     .cert-body {
                         font-size: 1rem;
-                        color: #475569;
+                        color:
                         max-width: 520px;
                         margin: 0.5rem auto 0.25rem;
                         line-height: 1.5;
@@ -264,7 +264,7 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                     .course-title {
                         font-size: 1.5rem;
                         font-weight: 800;
-                        color: #0f172a;
+                        color:
                         margin: 0 0 2rem;
                     }
                     .footer {
@@ -283,22 +283,22 @@ function renderCoursesDashboardView(enrolledCourses, state, container) {
                         font-size: 0.65rem;
                         font-weight: 800;
                         letter-spacing: 1px;
-                        color: #94a3b8;
+                        color:
                         text-transform: uppercase;
-                        border-top: 1.5px solid #cbd5e1;
+                        border-top: 1.5px solid
                         padding-top: 4px;
                         margin-top: 2px;
                     }
                     .seal-wrap {
                         width: 64px;
                         height: 64px;
-                        background: linear-gradient(135deg, #ffeaa7, #fdcb6e, #e1b12c);
+                        background: linear-gradient(135deg,
                         border-radius: 50%;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        color: #5c3d00;
+                        color:
                         box-shadow: 0 6px 16px rgba(225, 177, 44, 0.4);
                         margin: 0 auto;
                     }
@@ -369,18 +369,21 @@ function renderLessonPlayerView(courseId, enrolledCourses, container) {
     let selectedLessonIdx = initialCompleted.length < allLessons.length ? initialCompleted.length : 0;
 
     container.innerHTML = `
+        <!-- High-Contrast Sticky Pill Button Navigation -->
         <div style="margin-bottom: 1.5rem;">
-            <a href="classroom.html" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; color: var(--purple-deep); margin-bottom: 1rem;">
+            <a href="classroom.html" class="btn" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #f3e8ff; color: var(--purple-deep); border: 2.5px solid var(--purple-deep); border-radius: 999px; padding: 0.5rem 1.25rem; font-weight: 800; font-size: 0.9rem; text-decoration: none; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);">
                 <i class="fi fi-rr-arrow-left"></i> Back to My Courses
             </a>
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
                 <div>
-                    <h1 id="classTitle" style="font-size: 1.8rem; margin: 0;">${course.title}</h1>
+                    <span class="badge badge-purple">${course.categoryName} • ${course.difficulty}</span>
+                    <h1 id="classTitle" style="font-size: 1.8rem; margin: 0.2rem 0 0 0;">${course.title}</h1>
                 </div>
             </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 340px 1fr; gap: 1.5rem; align-items: start;">
+            <!-- Left Path Sidebar -->
             <div style="background: #fff; border: 3px solid var(--line, #e5e7eb); border-radius: 16px; padding: 1.25rem; overflow: hidden;">
                 <div style="margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.85rem; margin-bottom: 0.4rem;">
@@ -400,15 +403,53 @@ function renderLessonPlayerView(courseId, enrolledCourses, container) {
                 </div>
             </div>
 
+            <!-- Right Interactive Lesson Shell -->
             <div>
-                <div style="background: #0f172a; border-radius: 16px; padding: 2.5rem 1.5rem; color: #fff; text-align: center; min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 1rem; position: relative; overflow: hidden;">
-                    <div style="font-size: 2.5rem; color: var(--pink, #FF6B9B); margin-bottom: 0.75rem;"><i class="fi fi-rr-play-circle"></i></div>
-                    <h2 id="activeLessonTitle" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #ffffff;">Lesson Title</h2>
-                    <p style="color: #94a3b8; font-size: 0.9rem; margin: 0;">Interactive StarBud Learning Shell</p>
+                <!-- Rich Player Shell with Enriched Content -->
+                <div style="background: #0f172a; border-radius: 16px; padding: 2rem 1.5rem; color: #fff; min-height: 360px; display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 1rem; position: relative; overflow: hidden; border: 3px solid var(--purple-deep);">
+                    
+                    <!-- Player Header & Meta Info -->
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <span style="background: rgba(255,255,255,0.1); padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; color: #a5b4fc; display: inline-flex; align-items: center; gap: 0.4rem;">
+                                <i class="fi fi-rr-time-fast"></i> Duration: 12-15 Mins • Interactive Activity Included
+                            </span>
+                            <span style="background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 800;">
+                                +50 XP Reward
+                            </span>
+                        </div>
+
+                        <!-- Video Player Center Stage -->
+                        <div style="text-align: center; padding: 1.5rem 0;">
+                            <div style="font-size: 3.2rem; color: var(--pink, #FF6B9B); margin-bottom: 0.5rem; cursor: pointer; transition: transform 0.2s;" onclick="showToast('Playing interactive video module...', 'info')">
+                                <i class="fi fi-rr-play-circle"></i>
+                            </div>
+                            <h2 id="activeLessonTitle" style="font-size: 1.5rem; margin-bottom: 0.4rem; color: #ffffff;">Lesson Title</h2>
+                            <p style="color: #94a3b8; font-size: 0.88rem; margin: 0;">Guided by ${typeof course.instructor === 'object' ? course.instructor.name : course.instructor}</p>
+                        </div>
+                    </div>
+
+                    <!-- Enriched Interactive Transcript & Take-Home Tabs -->
+                    <div style="background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1rem; margin-top: 1rem; text-align: left;">
+                        <div style="display: flex; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; margin-bottom: 0.75rem; font-size: 0.82rem; font-weight: 800;">
+                            <span style="color: #a5b4fc; cursor: pointer; border-bottom: 2px solid #a5b4fc; padding-bottom: 2px;"><i class="fi fi-rr-document-text"></i> Synced Transcript</span>
+                            <span style="color: #94a3b8; cursor: pointer;" onclick="showToast('Take-Home Worksheet PDF ready for print in resource tab.', 'info')"><i class="fi fi-rr-download"></i> Take-Home Activity Worksheet</span>
+                        </div>
+                        <p id="lessonTranscriptText" style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
+                            Welcome to this lesson! In this interactive walkthrough, we examine step-by-step problem solving, fundamental concepts, and hands-on exercises to build your mastery. Follow along with your workspace open!
+                        </p>
+                    </div>
                 </div>
 
-                <div style="display: flex; justify-content: flex-end;">
-                    <button id="toggleCompleteBtn" class="btn btn-mint">Mark Lesson Complete (+50 XP)</button>
+                <!-- Complete Action Button -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Finished watching? Claim your XP:</span>
+                    <button id="toggleCompleteBtn" class="btn btn-mint" style="font-weight: 800; padding: 0.75rem 1.5rem;">Mark Lesson Complete (+50 XP)</button>
+                </div>
+
+                <!-- Dynamic Certificate Status Card (Locked / Unlocked) -->
+                <div id="courseCertificateCard" style="border: 3px solid #e2e8f0; border-radius: 16px; padding: 1.25rem 1.5rem; transition: all 0.3s ease;">
+                    <!-- Dynamically populated inside updateLessonUI() -->
                 </div>
             </div>
         </div>
@@ -418,10 +459,16 @@ function renderLessonPlayerView(courseId, enrolledCourses, container) {
         const currentState = getState();
         const completed = currentState.completedLessons[course.id] || [];
         const percent = allLessons.length > 0 ? Math.round((completed.length / allLessons.length) * 100) : 0;
+        const isCourseFullyFinished = allLessons.length > 0 && completed.length === allLessons.length;
 
         document.getElementById("progressBarFill").style.width = `${percent}%`;
         document.getElementById("progressPercentText").textContent = `${percent}% Completed`;
-        document.getElementById("activeLessonTitle").textContent = allLessons[selectedLessonIdx] || "Lesson";
+        
+        const currentLessonName = allLessons[selectedLessonIdx] || "Lesson";
+        document.getElementById("activeLessonTitle").textContent = currentLessonName;
+        document.getElementById("lessonTranscriptText").innerHTML = `
+            <strong>Key Takeaways for "${currentLessonName}":</strong> Focus on applying core concepts step by step. Pause the video whenever you need time to experiment in your own project workspace!
+        `;
 
         const isCurrentDone = completed.includes(selectedLessonIdx);
         const completeBtn = document.getElementById("toggleCompleteBtn");
@@ -431,6 +478,50 @@ function renderLessonPlayerView(courseId, enrolledCourses, container) {
         const xpDisplay = document.getElementById("userXpDisplay");
         if (xpDisplay) {
             xpDisplay.textContent = currentState.xp || 0;
+        }
+
+        const certCard = document.getElementById("courseCertificateCard");
+        const session = typeof starbudGetSession === 'function' ? starbudGetSession() : null;
+        const userName = session && session.name ? session.name : (currentState.userName || "StarBud Scholar");
+
+        if (isCourseFullyFinished) {
+            certCard.style.background = "#fffbeb";
+            certCard.style.borderColor = "#facc15";
+            certCard.style.opacity = "1";
+            certCard.style.cursor = "default";
+            certCard.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="font-size: 2.2rem; color: #d97706;"><i class="fi fi-rr-trophy"></i></div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1.1rem; color: #78350f;">Graduation Certificate Unlocked!</h4>
+                            <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #b45309;">Congratulations! You mastered 100% of ${course.title}.</p>
+                        </div>
+                    </div>
+                    <button onclick="viewCertificate('${course.title.replace(/'/g, "\\'")}', '${userName.replace(/'/g, "\\'")}')" class="btn btn-mint" style="font-weight: 800; gap: 0.5rem;">
+                        <i class="fi fi-rr-document-signed"></i> View & Print Certificate
+                    </button>
+                </div>
+            `;
+        } else {
+            certCard.style.background = "#f8fafc";
+            certCard.style.borderColor = "#cbd5e1";
+            certCard.style.opacity = "0.6";
+            certCard.style.cursor = "not-allowed";
+            certCard.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="font-size: 2rem; color: #94a3b8;"><i class="fi fi-rr-lock"></i></div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1rem; color: #64748b;">Graduation Certificate (Locked)</h4>
+                            <p style="margin: 2px 0 0 0; font-size: 0.82rem; color: #94a3b8;">Complete all ${allLessons.length} lessons to unlock your official PDF certificate.</p>
+                        </div>
+                    </div>
+                    <button disabled style="background: #e2e8f0; color: #94a3b8; border: none; border-radius: 8px; padding: 0.6rem 1.2rem; font-size: 0.85rem; font-weight: 700; cursor: not-allowed;">
+                        Locked (${completed.length}/${allLessons.length} Done)
+                    </button>
+                </div>
+            `;
         }
 
         const pathEl = document.getElementById("candyPath");

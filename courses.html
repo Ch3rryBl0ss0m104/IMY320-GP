@@ -15,12 +15,6 @@ Joanna Reardon u24597652
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 
-    <script src="js/app.js"></script>
-    <script src="js/coursesData.js"></script>
-    <script src="js/state.js"></script>
-    <script src="js/nav.js"></script>
-    <script src="js/courses.js"></script>
-
 <body>
     
     <nav class="site-nav">
@@ -37,7 +31,7 @@ Joanna Reardon u24597652
             </ul>
             <div class="nav-cta" data-nav-auth-slot>
                 <a href="login.html" class="btn btn-ghost">Login</a>
-                <a href="login.html?view=register" class="btn btn-primary">Start Learning</a>
+                <a href="login.html?view=register" class="btn btn-primary">Register</a>
             </div>
         </div>
     </nav>
@@ -53,28 +47,55 @@ Joanna Reardon u24597652
     <main>
         <section class="section">
             <div class="wrap">
-                <div class="catalogue-controls">
-                    <div class="search-input-wrapper">
+                <div class="catalogue-controls" style="margin-bottom: 1.5rem;">
+                    <div class="search-input-wrapper" style="width: 100%;">
                         <i class="fi fi-rr-search search-icon"></i>
                         <input type="text" id="courseSearch" class="search-input" placeholder="Search by title, subject, or keyword...">
                     </div>
+                </div>
 
-                    <div class="select-wrapper">
-                        <select id="courseSort" class="select-input">
-                            <option value="all">All Courses</option>
-    
-                            <option value="code">Coding</option>
-                            <option value="art">Art & Design</option>
-                            <option value="music">Music</option>
-                            <option value="math">Maths & Logic</option>
+                <div id="filterAccordionContainer" style="background: #fff; border: 3px solid var(--line, #e2d9f3); border-radius: 18px; padding: 1.25rem; margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="margin: 0; font-size: 1.1rem; color: var(--purple-deep);"><i class="fi fi-rr-filter"></i> Filter & Sort Courses</h3>
+                        <button id="resetFiltersBtn" class="btn btn-ghost btn-sm" style="font-size: 0.8rem; padding: 0.3rem 0.75rem;">Reset All Filters</button>
+                    </div>
 
-                            <option value="Beginner">Beginner Level</option>
-                            <option value="Intermediate">Intermediate Level</option>
-                            <option value="Advanced">Advanced Level</option>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <details open style="border: 2px solid var(--line); border-radius: 12px; padding: 0.75rem 1rem; background: var(--bg-raised-2);">
+                            <summary style="font-family: var(--font-display); font-weight: 700; color: var(--purple-deep); cursor: pointer;">
+                                <i class="fi fi-rr-apps"></i> Subject Clubs
+                            </summary>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
+                                <button class="filter-chip active" data-filter-type="category" data-val="all">All Subjects</button>
+                                <button class="filter-chip" data-filter-type="category" data-val="code">Coding</button>
+                                <button class="filter-chip" data-filter-type="category" data-val="art">Art & Design</button>
+                                <button class="filter-chip" data-filter-type="category" data-val="music">Music</button>
+                                <button class="filter-chip" data-filter-type="category" data-val="math">Maths & Logic</button>
+                            </div>
+                        </details>
 
-                            <option value="name-asc">Name (A-Z)</option>
-                            <option value="name-desc">Name (Z-A)</option>
-                        </select>
+                        <details style="border: 2px solid var(--line); border-radius: 12px; padding: 0.75rem 1rem; background: var(--bg-raised-2);">
+                            <summary style="font-family: var(--font-display); font-weight: 700; color: var(--purple-deep); cursor: pointer;">
+                                <i class="fi fi-rr-signal"></i> Difficulty Level
+                            </summary>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
+                                <button class="filter-chip active" data-filter-type="difficulty" data-val="all">All Levels</button>
+                                <button class="filter-chip" data-filter-type="difficulty" data-val="Beginner">Beginner</button>
+                                <button class="filter-chip" data-filter-type="difficulty" data-val="Intermediate">Intermediate</button>
+                                <button class="filter-chip" data-filter-type="difficulty" data-val="Advanced">Advanced</button>
+                            </div>
+                        </details>
+
+                        <details style="border: 2px solid var(--line); border-radius: 12px; padding: 0.75rem 1rem; background: var(--bg-raised-2);">
+                            <summary style="font-family: var(--font-display); font-weight: 700; color: var(--purple-deep); cursor: pointer;">
+                                <i class="fi fi-rr-sort-alt"></i> Sort Order
+                            </summary>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
+                                <button class="filter-chip active" data-filter-type="sort" data-val="default">Default</button>
+                                <button class="filter-chip" data-filter-type="sort" data-val="name-asc">Name (A-Z)</button>
+                                <button class="filter-chip" data-filter-type="sort" data-val="name-desc">Name (Z-A)</button>
+                            </div>
+                        </details>
                     </div>
                 </div>
 
@@ -121,6 +142,10 @@ Joanna Reardon u24597652
         </div>
     </footer>
 
+    <script src="js/coursesData.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/nav.js"></script>
     <script src="js/courses.js"></script>
 </body>
 </html>

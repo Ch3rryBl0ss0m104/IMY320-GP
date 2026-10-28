@@ -25,7 +25,7 @@ function renderGlobalNavigation() {
             classroomItem.id = "navClassroomLi";
             classroomItem.innerHTML = `
                 <a href="classroom.html" class="${isClassroomPage ? 'active' : ''}">
-                    Classroom
+                    My Classroom
                 </a>
             `;
 
@@ -62,7 +62,7 @@ function renderGlobalNavigation() {
         } else {
             authSlot.innerHTML = `
                 <a href="login.html" class="btn btn-ghost">Login</a>
-                <a href="login.html?view=register" class="btn btn-primary">Start Learning</a>
+                <a href="login.html?view=register" class="btn btn-primary">Register</a>
             `;
         }
     }

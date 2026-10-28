@@ -4,7 +4,6 @@ Livia Webber u24607852
 Joanna Reardon u24597652
 */
 
-
 const STARBUD_DB_KEY = 'starbud_users_v1';
 const STARBUD_SESSION_KEY = 'starbud_session_v1';
 
@@ -168,12 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Function to update certificate dynamic details
 function renderCertificate(courseTitle = "Web Development Fundamentals") {
     const session = typeof starbudGetSession === 'function' ? starbudGetSession() : null;
     const userName = session && session.name ? session.name : "StarBud Learner";
 
-    // Dynamic element updates
     const nameEl = document.getElementById("cert-user-name");
     const courseEl = document.getElementById("cert-course-title");
     const dateEl = document.getElementById("cert-issue-date");
